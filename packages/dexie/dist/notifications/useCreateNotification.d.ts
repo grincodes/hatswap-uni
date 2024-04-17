@@ -1,0 +1,2 @@
+export declare const useCreateNotification: () => (payload: import("./types.js").PromiseNotification | import("./types.js").ResolvedNotification) => Promise<void>;
+//# sourceMappingURL=useCreateNotification.d.ts.map

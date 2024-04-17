@@ -1,0 +1,1 @@
+{"version":3,"file":"getToken.d.ts","sourceRoot":"","sources":["../../src/tokens/getToken.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,KAAK,OAAO,EAAE,MAAM,aAAa,CAAA;AAG1C,OAAO,EAAE,KAAK,UAAU,EAAE,MAAM,YAAY,CAAA;AAE5C,eAAO,MAAM,QAAQ;aAIV,OAAO,GAAG,SAAS;aACnB,MAAM,GAAG,SAAS,GAAG,IAAI;MAChC,QAAQ,UAAU,GAAG,SAAS,CAYjC,CAAA"}

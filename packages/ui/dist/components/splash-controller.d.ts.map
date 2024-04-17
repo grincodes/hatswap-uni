@@ -1,0 +1,1 @@
+{"version":3,"file":"splash-controller.d.ts","sourceRoot":"","sources":["../../src/components/splash-controller.tsx"],"names":[],"mappings":"AAAA,OAAc,EAAE,EAAE,EAAE,SAAS,EAAE,MAAM,OAAO,CAAA;AAI5C,QAAA,MAAM,MAAM,EAAE,EAWb,CAAA;AAED,QAAA,MAAM,gBAAgB,EAAE,EAAE,CAAC;IAAE,QAAQ,EAAE,SAAS,CAAC;IAAC,IAAI,CAAC,EAAE,OAAO,CAAA;CAAE,CAKjE,CAAA;AAED,OAAO,EAAE,MAAM,EAAE,gBAAgB,EAAE,CAAA"}

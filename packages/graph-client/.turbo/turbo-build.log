@@ -1,0 +1,18 @@
+
+
+> @sushiswap/graph-client@1.0.0 build /Users/grincodes/Documents/Begrudges/BlockChain/Solidity/Defi/Sushiswap/sushiswap/packages/graph-client
+> graphclient build --fileType js --throwOnInvalidConfig && rm -f .graphclient/package.json && tsc
+
+💡 [1mGraphClient[0m [36mCleaning existing artifacts[0m
+💡 [1mGraphClient[0m [36mReading the configuration[0m
+⚠️ [1mGraphClient - config[0m [48:5:166mConfiguration file is not valid![0m
+⚠️ [1mGraphClient - config[0m [48:5:166mThis is just a warning! It doesn't have any effects on runtime.[0m
+⚠️ [1mGraphClient - config[0m [48:5:166mError: must be array[0m
+💡 [1mGraphClient[0m [36mGenerating the unified schema[0m
+💡 [1mGraphClient[0m [36mGenerating artifacts[0m
+💡 [1mGraphClient[0m [36mGenerating index file in TypeScript[0m
+💡 [1mGraphClient[0m [36mWriting index.ts for ESM to the disk.[0m
+💡 [1mGraphClient[0m [36mCompiling TS file as ES Module to "index.js"[0m
+💡 [1mGraphClient[0m [36mDeleting index.ts[0m
+💡 [1mGraphClient[0m [36mCleanup[0m
+💡 [1mGraphClient[0m [36mDone! => /Users/grincodes/Documents/Begrudges/BlockChain/Solidity/Defi/Sushiswap/sushiswap/packages/...<Error message is too long. Enable DEBUG=1 to see the full message.>[0m

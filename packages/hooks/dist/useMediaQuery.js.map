@@ -1,0 +1,1 @@
+{"version":3,"file":"useMediaQuery.js","sourceRoot":"","sources":["../src/useMediaQuery.ts"],"names":[],"mappings":"AAAA,YAAY,CAAA;AAEZ,OAAO,EAAE,aAAa,EAAE,MAAM,kBAAkB,CAAA;AAChD,OAAO,EAAE,aAAa,EAAE,MAAM,kBAAkB,CAAA;AAEhD,MAAM,CAAC,MAAM,aAAa,GAAG,GAAG,EAAE;IAChC,OAAO,aAAa,CAAC,EAAE,KAAK,EAAE,oBAAoB,EAAE,CAAC,CAAA;AACvD,CAAC,CAAA"}

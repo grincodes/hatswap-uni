@@ -1,0 +1,1 @@
+{"version":3,"file":"dismissable-message.d.ts","sourceRoot":"","sources":["../../src/components/dismissable-message.tsx"],"names":[],"mappings":"AAGA,OAAO,EAAE,EAAE,EAAE,MAAM,OAAO,CAAA;AAE1B,OAAO,EAAW,KAAK,YAAY,EAAE,MAAM,WAAW,CAAA;AAEtD,UAAU,uBAAwB,SAAQ,YAAY;IACpD,UAAU,EAAE,MAAM,CAAA;IAClB,SAAS,EAAE,MAAM,CAAA;CAClB;AAED,eAAO,MAAM,kBAAkB,EAAE,EAAE,CAAC,uBAAuB,CAY1D,CAAA"}

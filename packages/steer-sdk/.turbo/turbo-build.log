@@ -1,0 +1,22 @@
+
+
+> @sushiswap/steer-sdk@0.0.0 build /Users/grincodes/Documents/Begrudges/BlockChain/Solidity/Defi/Sushiswap/sushiswap/packages/steer-sdk
+> tsup src/index.ts src/abi/index.ts
+
+[34mCLI[39m Building entry: src/index.ts, src/abi/index.ts
+[34mCLI[39m Using tsconfig: tsconfig.json
+[34mCLI[39m tsup v7.1.0
+[34mCLI[39m Using tsup config: /Users/grincodes/Documents/Begrudges/BlockChain/Solidity/Defi/Sushiswap/sushiswap/packages/steer-sdk/tsup.config.ts
+[34mCLI[39m Target: es2022
+[34mESM[39m Build start
+[32mESM[39m [1mdist/index.js              [22m[32m7.63 KB[39m
+[32mESM[39m [1mdist/abi/index.js          [22m[32m144.00 B[39m
+[32mESM[39m [1mdist/chunk-7QSHLNBW.js     [22m[32m20.40 KB[39m
+[32mESM[39m [1mdist/index.js.map          [22m[32m28.12 KB[39m
+[32mESM[39m [1mdist/abi/index.js.map      [22m[32m71.00 B[39m
+[32mESM[39m [1mdist/chunk-7QSHLNBW.js.map [22m[32m54.45 KB[39m
+[32mESM[39m ⚡️ Build success in 281ms
+[34mDTS[39m Build start
+[32mDTS[39m ⚡️ Build success in 10460ms
+[32mDTS[39m [1mdist/index.d.ts     [22m[32m70.50 KB[39m
+[32mDTS[39m [1mdist/abi/index.d.ts [22m[32m45.08 KB[39m

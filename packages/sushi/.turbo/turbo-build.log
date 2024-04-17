@@ -1,0 +1,42 @@
+
+
+> sushi@3.0.0 build /Users/grincodes/Documents/Begrudges/BlockChain/Solidity/Defi/Sushiswap/ui/sushiswap/packages/sushi
+> tsc
+
+[96msrc/config/viem.ts[0m:[93m581[0m:[93m12[0m - [91merror[0m[90m TS1360: [0mType '{ readonly 42170: HttpTransport; readonly 42161: HttpTransport; readonly 43114: HttpTransport; readonly 288: HttpTransport; ... 37 more ...; readonly 11155111: HttpTransport; }' does not satisfy the expected type 'Record<ChainId, Transport>'.
+  Property '666666666' is missing in type '{ readonly 42170: HttpTransport; readonly 42161: HttpTransport; readonly 43114: HttpTransport; readonly 288: HttpTransport; ... 37 more ...; readonly 11155111: HttpTransport; }' but required in type 'Record<ChainId, Transport>'.
+
+[7m581[0m } as const satisfies Record<ChainId, Transport>
+[7m   [0m [91m           ~~~~~~~~~[0m
+
+[96msrc/config/viem.ts[0m:[93m800[0m:[93m12[0m - [91merror[0m[90m TS1360: [0mType '{ readonly 42170: { readonly chain: { blockExplorers: { readonly default: { readonly name: "Arbiscan"; readonly url: "https://nova.arbiscan.io"; readonly apiUrl: "https://api-nova.arbiscan.io/api"; }; }; ... 10 more ...; fees?: ChainFees<...> | undefined; }; readonly transport: HttpTransport; }; ... 40 more ...; rea...' does not satisfy the expected type 'Record<ChainId, { name?: string | undefined; batch?: { multicall?: boolean | { batchSize?: number | undefined; wait?: number | undefined; } | undefined; } | undefined; cacheTime?: number | undefined; chain?: Chain | undefined; key?: string | undefined; pollingInterval?: number | undefined; transport: Transport; } & ...'.
+  Property '666666666' is missing in type '{ readonly 42170: { readonly chain: { blockExplorers: { readonly default: { readonly name: "Arbiscan"; readonly url: "https://nova.arbiscan.io"; readonly apiUrl: "https://api-nova.arbiscan.io/api"; }; }; ... 10 more ...; fees?: ChainFees<...> | undefined; }; readonly transport: HttpTransport; }; ... 40 more ...; rea...' but required in type 'Record<ChainId, { name?: string | undefined; batch?: { multicall?: boolean | { batchSize?: number | undefined; wait?: number | undefined; } | undefined; } | undefined; cacheTime?: number | undefined; chain?: Chain | undefined; key?: string | undefined; pollingInterval?: number | undefined; transport: Transport; } & ...'.
+
+[7m800[0m } as const satisfies Record<
+[7m   [0m [91m           ~~~~~~~~~[0m
+
+[96msrc/router/data-fetcher.ts[0m:[93m77[0m:[93m27[0m - [91merror[0m[90m TS7053: [0mElement implicitly has an 'any' type because expression of type '1 | 137 | 250 | 100 | 56 | 666666666 | 42161 | 42170 | 43114 | 128 | 1666600000 | 66 | 42220 | 11297108109 | 1285 | 122 | 40 | 1284 | 10 | 2222 | 1088 | 288 | 43288 | 56288 | 199 | 1101 | ... 10 more ... | 81457' can't be used to index type '{ readonly 42170: { readonly chain: { blockExplorers: { readonly default: { readonly name: "Arbiscan"; readonly url: "https://nova.arbiscan.io"; readonly apiUrl: "https://api-nova.arbiscan.io/api"; }; }; ... 10 more ...; fees?: ChainFees<...> | undefined; }; readonly transport: HttpTransport; }; ... 40 more ...; rea...'.
+  Property '666666666' does not exist on type '{ readonly 42170: { readonly chain: { blockExplorers: { readonly default: { readonly name: "Arbiscan"; readonly url: "https://nova.arbiscan.io"; readonly apiUrl: "https://api-nova.arbiscan.io/api"; }; }; ... 10 more ...; fees?: ChainFees<...> | undefined; }; readonly transport: HttpTransport; }; ... 40 more ...; rea...'.
+
+[7m77[0m     if (!publicClient && !publicClientConfig[this.chainId]) {
+[7m  [0m [91m                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96msrc/router/data-fetcher.ts[0m:[93m87[0m:[93m12[0m - [91merror[0m[90m TS7053: [0mElement implicitly has an 'any' type because expression of type '1 | 137 | 250 | 100 | 56 | 666666666 | 42161 | 42170 | 43114 | 128 | 1666600000 | 66 | 42220 | 11297108109 | 1285 | 122 | 40 | 1284 | 10 | 2222 | 1088 | 288 | 43288 | 56288 | 199 | 1101 | ... 10 more ... | 81457' can't be used to index type '{ readonly 42170: { readonly chain: { blockExplorers: { readonly default: { readonly name: "Arbiscan"; readonly url: "https://nova.arbiscan.io"; readonly apiUrl: "https://api-nova.arbiscan.io/api"; }; }; ... 10 more ...; fees?: ChainFees<...> | undefined; }; readonly transport: HttpTransport; }; ... 40 more ...; rea...'.
+  Property '666666666' does not exist on type '{ readonly 42170: { readonly chain: { blockExplorers: { readonly default: { readonly name: "Arbiscan"; readonly url: "https://nova.arbiscan.io"; readonly apiUrl: "https://api-nova.arbiscan.io/api"; }; }; ... 10 more ...; fees?: ChainFees<...> | undefined; }; readonly transport: HttpTransport; }; ... 40 more ...; rea...'.
+
+[7m87[0m         ...publicClientConfig[this.chainId],
+[7m  [0m [91m           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96msrc/router/data-fetcher.ts[0m:[93m96[0m:[93m44[0m - [91merror[0m[90m TS7053: [0mElement implicitly has an 'any' type because expression of type '1 | 137 | 250 | 100 | 56 | 666666666 | 42161 | 42170 | 43114 | 128 | 1666600000 | 66 | 42220 | 11297108109 | 1285 | 122 | 40 | 1284 | 10 | 2222 | 1088 | 288 | 43288 | 56288 | 199 | 1101 | ... 10 more ... | 81457' can't be used to index type '{ readonly 42170: { readonly chain: { blockExplorers: { readonly default: { readonly name: "Arbiscan"; readonly url: "https://nova.arbiscan.io"; readonly apiUrl: "https://api-nova.arbiscan.io/api"; }; }; ... 10 more ...; fees?: ChainFees<...> | undefined; }; readonly transport: HttpTransport; }; ... 40 more ...; rea...'.
+  Property '666666666' does not exist on type '{ readonly 42170: { readonly chain: { blockExplorers: { readonly default: { readonly name: "Arbiscan"; readonly url: "https://nova.arbiscan.io"; readonly apiUrl: "https://api-nova.arbiscan.io/api"; }; }; ... 10 more ...; fees?: ChainFees<...> | undefined; }; readonly transport: HttpTransport; }; ... 40 more ...; rea...'.
+
+[7m96[0m       this.web3Client = createPublicClient(publicClientConfig[this.chainId])
+[7m  [0m [91m                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+Found 5 errors in 2 files.
+
+Errors  Files
+     2  src/config/viem.ts[90m:581[0m
+     3  src/router/data-fetcher.ts[90m:77[0m
+[41m[30m ELIFECYCLE [39m[49m [31mCommand failed with exit code 2.[39m

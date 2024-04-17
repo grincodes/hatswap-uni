@@ -1,0 +1,3686 @@
+schema {
+  query: Query
+  subscription: Subscription
+}
+
+"Marks the GraphQL type as indexable entity.  Each type that should be an entity is required to be annotated with this directive."
+directive @entity on OBJECT
+
+"Defined a Subgraph ID for an object type"
+directive @subgraphId(id: String!) on OBJECT
+
+"creates a virtual field on the entity that may be queried but cannot be set manually through the mappings API."
+directive @derivedFrom(field: String!) on FIELD_DEFINITION
+
+enum deprecated_Aggregation_interval {
+  hour
+  day
+}
+
+scalar deprecated_BigDecimal
+
+scalar BigInt
+
+input deprecated_BlockChangedFilter {
+  number_gte: Int!
+}
+
+input deprecated_Block_height {
+  hash: deprecated_Bytes
+  number: Int
+  number_gte: Int
+}
+
+type deprecated_Bundle {
+  id: ID!
+  ethPrice: deprecated_BigDecimal!
+}
+
+input deprecated_Bundle_filter {
+  id: ID
+  id_not: ID
+  id_gt: ID
+  id_lt: ID
+  id_gte: ID
+  id_lte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  ethPrice: deprecated_BigDecimal
+  ethPrice_not: deprecated_BigDecimal
+  ethPrice_gt: deprecated_BigDecimal
+  ethPrice_lt: deprecated_BigDecimal
+  ethPrice_gte: deprecated_BigDecimal
+  ethPrice_lte: deprecated_BigDecimal
+  ethPrice_in: [deprecated_BigDecimal!]
+  ethPrice_not_in: [deprecated_BigDecimal!]
+  """Filter for the block changed event."""
+  _change_block: deprecated_BlockChangedFilter
+  and: [deprecated_Bundle_filter]
+  or: [deprecated_Bundle_filter]
+}
+
+enum deprecated_Bundle_orderBy {
+  id
+  ethPrice
+}
+
+type deprecated_Burn {
+  id: ID!
+  transaction: deprecated_Transaction!
+  timestamp: BigInt!
+  pair: deprecated_Pair!
+  liquidity: deprecated_BigDecimal!
+  sender: String
+  amount0: deprecated_BigDecimal
+  amount1: deprecated_BigDecimal
+  to: String
+  logIndex: BigInt
+  amountUSD: deprecated_BigDecimal
+  complete: Boolean!
+  feeTo: String
+  feeLiquidity: deprecated_BigDecimal
+}
+
+input deprecated_Burn_filter {
+  id: ID
+  id_not: ID
+  id_gt: ID
+  id_lt: ID
+  id_gte: ID
+  id_lte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  transaction: String
+  transaction_not: String
+  transaction_gt: String
+  transaction_lt: String
+  transaction_gte: String
+  transaction_lte: String
+  transaction_in: [String!]
+  transaction_not_in: [String!]
+  transaction_contains: String
+  transaction_contains_nocase: String
+  transaction_not_contains: String
+  transaction_not_contains_nocase: String
+  transaction_starts_with: String
+  transaction_starts_with_nocase: String
+  transaction_not_starts_with: String
+  transaction_not_starts_with_nocase: String
+  transaction_ends_with: String
+  transaction_ends_with_nocase: String
+  transaction_not_ends_with: String
+  transaction_not_ends_with_nocase: String
+  transaction_: deprecated_Transaction_filter
+  timestamp: BigInt
+  timestamp_not: BigInt
+  timestamp_gt: BigInt
+  timestamp_lt: BigInt
+  timestamp_gte: BigInt
+  timestamp_lte: BigInt
+  timestamp_in: [BigInt!]
+  timestamp_not_in: [BigInt!]
+  pair: String
+  pair_not: String
+  pair_gt: String
+  pair_lt: String
+  pair_gte: String
+  pair_lte: String
+  pair_in: [String!]
+  pair_not_in: [String!]
+  pair_contains: String
+  pair_contains_nocase: String
+  pair_not_contains: String
+  pair_not_contains_nocase: String
+  pair_starts_with: String
+  pair_starts_with_nocase: String
+  pair_not_starts_with: String
+  pair_not_starts_with_nocase: String
+  pair_ends_with: String
+  pair_ends_with_nocase: String
+  pair_not_ends_with: String
+  pair_not_ends_with_nocase: String
+  pair_: deprecated_Pair_filter
+  liquidity: deprecated_BigDecimal
+  liquidity_not: deprecated_BigDecimal
+  liquidity_gt: deprecated_BigDecimal
+  liquidity_lt: deprecated_BigDecimal
+  liquidity_gte: deprecated_BigDecimal
+  liquidity_lte: deprecated_BigDecimal
+  liquidity_in: [deprecated_BigDecimal!]
+  liquidity_not_in: [deprecated_BigDecimal!]
+  sender: String
+  sender_not: String
+  sender_gt: String
+  sender_lt: String
+  sender_gte: String
+  sender_lte: String
+  sender_in: [String!]
+  sender_not_in: [String!]
+  sender_contains: String
+  sender_contains_nocase: String
+  sender_not_contains: String
+  sender_not_contains_nocase: String
+  sender_starts_with: String
+  sender_starts_with_nocase: String
+  sender_not_starts_with: String
+  sender_not_starts_with_nocase: String
+  sender_ends_with: String
+  sender_ends_with_nocase: String
+  sender_not_ends_with: String
+  sender_not_ends_with_nocase: String
+  amount0: deprecated_BigDecimal
+  amount0_not: deprecated_BigDecimal
+  amount0_gt: deprecated_BigDecimal
+  amount0_lt: deprecated_BigDecimal
+  amount0_gte: deprecated_BigDecimal
+  amount0_lte: deprecated_BigDecimal
+  amount0_in: [deprecated_BigDecimal!]
+  amount0_not_in: [deprecated_BigDecimal!]
+  amount1: deprecated_BigDecimal
+  amount1_not: deprecated_BigDecimal
+  amount1_gt: deprecated_BigDecimal
+  amount1_lt: deprecated_BigDecimal
+  amount1_gte: deprecated_BigDecimal
+  amount1_lte: deprecated_BigDecimal
+  amount1_in: [deprecated_BigDecimal!]
+  amount1_not_in: [deprecated_BigDecimal!]
+  to: String
+  to_not: String
+  to_gt: String
+  to_lt: String
+  to_gte: String
+  to_lte: String
+  to_in: [String!]
+  to_not_in: [String!]
+  to_contains: String
+  to_contains_nocase: String
+  to_not_contains: String
+  to_not_contains_nocase: String
+  to_starts_with: String
+  to_starts_with_nocase: String
+  to_not_starts_with: String
+  to_not_starts_with_nocase: String
+  to_ends_with: String
+  to_ends_with_nocase: String
+  to_not_ends_with: String
+  to_not_ends_with_nocase: String
+  logIndex: BigInt
+  logIndex_not: BigInt
+  logIndex_gt: BigInt
+  logIndex_lt: BigInt
+  logIndex_gte: BigInt
+  logIndex_lte: BigInt
+  logIndex_in: [BigInt!]
+  logIndex_not_in: [BigInt!]
+  amountUSD: deprecated_BigDecimal
+  amountUSD_not: deprecated_BigDecimal
+  amountUSD_gt: deprecated_BigDecimal
+  amountUSD_lt: deprecated_BigDecimal
+  amountUSD_gte: deprecated_BigDecimal
+  amountUSD_lte: deprecated_BigDecimal
+  amountUSD_in: [deprecated_BigDecimal!]
+  amountUSD_not_in: [deprecated_BigDecimal!]
+  complete: Boolean
+  complete_not: Boolean
+  complete_in: [Boolean!]
+  complete_not_in: [Boolean!]
+  feeTo: String
+  feeTo_not: String
+  feeTo_gt: String
+  feeTo_lt: String
+  feeTo_gte: String
+  feeTo_lte: String
+  feeTo_in: [String!]
+  feeTo_not_in: [String!]
+  feeTo_contains: String
+  feeTo_contains_nocase: String
+  feeTo_not_contains: String
+  feeTo_not_contains_nocase: String
+  feeTo_starts_with: String
+  feeTo_starts_with_nocase: String
+  feeTo_not_starts_with: String
+  feeTo_not_starts_with_nocase: String
+  feeTo_ends_with: String
+  feeTo_ends_with_nocase: String
+  feeTo_not_ends_with: String
+  feeTo_not_ends_with_nocase: String
+  feeLiquidity: deprecated_BigDecimal
+  feeLiquidity_not: deprecated_BigDecimal
+  feeLiquidity_gt: deprecated_BigDecimal
+  feeLiquidity_lt: deprecated_BigDecimal
+  feeLiquidity_gte: deprecated_BigDecimal
+  feeLiquidity_lte: deprecated_BigDecimal
+  feeLiquidity_in: [deprecated_BigDecimal!]
+  feeLiquidity_not_in: [deprecated_BigDecimal!]
+  """Filter for the block changed event."""
+  _change_block: deprecated_BlockChangedFilter
+  and: [deprecated_Burn_filter]
+  or: [deprecated_Burn_filter]
+}
+
+enum deprecated_Burn_orderBy {
+  id
+  transaction
+  transaction__id
+  transaction__blockNumber
+  transaction__timestamp
+  timestamp
+  pair
+  pair__id
+  pair__name
+  pair__reserve0
+  pair__reserve1
+  pair__totalSupply
+  pair__reserveETH
+  pair__reserveUSD
+  pair__trackedReserveETH
+  pair__token0Price
+  pair__token1Price
+  pair__volumeToken0
+  pair__volumeToken1
+  pair__volumeUSD
+  pair__untrackedVolumeUSD
+  pair__txCount
+  pair__liquidityProviderCount
+  pair__timestamp
+  pair__block
+  liquidity
+  sender
+  amount0
+  amount1
+  to
+  logIndex
+  amountUSD
+  complete
+  feeTo
+  feeLiquidity
+}
+
+scalar deprecated_Bytes
+
+type deprecated_DayData {
+  id: ID!
+  date: Int!
+  factory: deprecated_Factory!
+  volumeETH: deprecated_BigDecimal!
+  volumeUSD: deprecated_BigDecimal!
+  untrackedVolume: deprecated_BigDecimal!
+  liquidityETH: deprecated_BigDecimal!
+  liquidityUSD: deprecated_BigDecimal!
+  txCount: BigInt!
+}
+
+input deprecated_DayData_filter {
+  id: ID
+  id_not: ID
+  id_gt: ID
+  id_lt: ID
+  id_gte: ID
+  id_lte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  date: Int
+  date_not: Int
+  date_gt: Int
+  date_lt: Int
+  date_gte: Int
+  date_lte: Int
+  date_in: [Int!]
+  date_not_in: [Int!]
+  factory: String
+  factory_not: String
+  factory_gt: String
+  factory_lt: String
+  factory_gte: String
+  factory_lte: String
+  factory_in: [String!]
+  factory_not_in: [String!]
+  factory_contains: String
+  factory_contains_nocase: String
+  factory_not_contains: String
+  factory_not_contains_nocase: String
+  factory_starts_with: String
+  factory_starts_with_nocase: String
+  factory_not_starts_with: String
+  factory_not_starts_with_nocase: String
+  factory_ends_with: String
+  factory_ends_with_nocase: String
+  factory_not_ends_with: String
+  factory_not_ends_with_nocase: String
+  factory_: deprecated_Factory_filter
+  volumeETH: deprecated_BigDecimal
+  volumeETH_not: deprecated_BigDecimal
+  volumeETH_gt: deprecated_BigDecimal
+  volumeETH_lt: deprecated_BigDecimal
+  volumeETH_gte: deprecated_BigDecimal
+  volumeETH_lte: deprecated_BigDecimal
+  volumeETH_in: [deprecated_BigDecimal!]
+  volumeETH_not_in: [deprecated_BigDecimal!]
+  volumeUSD: deprecated_BigDecimal
+  volumeUSD_not: deprecated_BigDecimal
+  volumeUSD_gt: deprecated_BigDecimal
+  volumeUSD_lt: deprecated_BigDecimal
+  volumeUSD_gte: deprecated_BigDecimal
+  volumeUSD_lte: deprecated_BigDecimal
+  volumeUSD_in: [deprecated_BigDecimal!]
+  volumeUSD_not_in: [deprecated_BigDecimal!]
+  untrackedVolume: deprecated_BigDecimal
+  untrackedVolume_not: deprecated_BigDecimal
+  untrackedVolume_gt: deprecated_BigDecimal
+  untrackedVolume_lt: deprecated_BigDecimal
+  untrackedVolume_gte: deprecated_BigDecimal
+  untrackedVolume_lte: deprecated_BigDecimal
+  untrackedVolume_in: [deprecated_BigDecimal!]
+  untrackedVolume_not_in: [deprecated_BigDecimal!]
+  liquidityETH: deprecated_BigDecimal
+  liquidityETH_not: deprecated_BigDecimal
+  liquidityETH_gt: deprecated_BigDecimal
+  liquidityETH_lt: deprecated_BigDecimal
+  liquidityETH_gte: deprecated_BigDecimal
+  liquidityETH_lte: deprecated_BigDecimal
+  liquidityETH_in: [deprecated_BigDecimal!]
+  liquidityETH_not_in: [deprecated_BigDecimal!]
+  liquidityUSD: deprecated_BigDecimal
+  liquidityUSD_not: deprecated_BigDecimal
+  liquidityUSD_gt: deprecated_BigDecimal
+  liquidityUSD_lt: deprecated_BigDecimal
+  liquidityUSD_gte: deprecated_BigDecimal
+  liquidityUSD_lte: deprecated_BigDecimal
+  liquidityUSD_in: [deprecated_BigDecimal!]
+  liquidityUSD_not_in: [deprecated_BigDecimal!]
+  txCount: BigInt
+  txCount_not: BigInt
+  txCount_gt: BigInt
+  txCount_lt: BigInt
+  txCount_gte: BigInt
+  txCount_lte: BigInt
+  txCount_in: [BigInt!]
+  txCount_not_in: [BigInt!]
+  """Filter for the block changed event."""
+  _change_block: deprecated_BlockChangedFilter
+  and: [deprecated_DayData_filter]
+  or: [deprecated_DayData_filter]
+}
+
+enum deprecated_DayData_orderBy {
+  id
+  date
+  factory
+  factory__id
+  factory__pairCount
+  factory__volumeUSD
+  factory__volumeETH
+  factory__untrackedVolumeUSD
+  factory__liquidityUSD
+  factory__liquidityETH
+  factory__txCount
+  factory__tokenCount
+  factory__userCount
+  volumeETH
+  volumeUSD
+  untrackedVolume
+  liquidityETH
+  liquidityUSD
+  txCount
+}
+
+type deprecated_Factory {
+  id: ID!
+  pairCount: BigInt!
+  volumeUSD: deprecated_BigDecimal!
+  volumeETH: deprecated_BigDecimal!
+  untrackedVolumeUSD: deprecated_BigDecimal!
+  liquidityUSD: deprecated_BigDecimal!
+  liquidityETH: deprecated_BigDecimal!
+  txCount: BigInt!
+  tokenCount: BigInt!
+  userCount: BigInt!
+  pairs(skip: Int = 0, first: Int = 100, orderBy: deprecated_Pair_orderBy, orderDirection: deprecated_OrderDirection, where: deprecated_Pair_filter): [deprecated_Pair!]!
+  tokens(skip: Int = 0, first: Int = 100, orderBy: deprecated_Token_orderBy, orderDirection: deprecated_OrderDirection, where: deprecated_Token_filter): [deprecated_Token!]!
+  hourData(skip: Int = 0, first: Int = 100, orderBy: deprecated_HourData_orderBy, orderDirection: deprecated_OrderDirection, where: deprecated_HourData_filter): [deprecated_HourData!]!
+  dayData(skip: Int = 0, first: Int = 100, orderBy: deprecated_DayData_orderBy, orderDirection: deprecated_OrderDirection, where: deprecated_DayData_filter): [deprecated_DayData!]!
+}
+
+input deprecated_Factory_filter {
+  id: ID
+  id_not: ID
+  id_gt: ID
+  id_lt: ID
+  id_gte: ID
+  id_lte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  pairCount: BigInt
+  pairCount_not: BigInt
+  pairCount_gt: BigInt
+  pairCount_lt: BigInt
+  pairCount_gte: BigInt
+  pairCount_lte: BigInt
+  pairCount_in: [BigInt!]
+  pairCount_not_in: [BigInt!]
+  volumeUSD: deprecated_BigDecimal
+  volumeUSD_not: deprecated_BigDecimal
+  volumeUSD_gt: deprecated_BigDecimal
+  volumeUSD_lt: deprecated_BigDecimal
+  volumeUSD_gte: deprecated_BigDecimal
+  volumeUSD_lte: deprecated_BigDecimal
+  volumeUSD_in: [deprecated_BigDecimal!]
+  volumeUSD_not_in: [deprecated_BigDecimal!]
+  volumeETH: deprecated_BigDecimal
+  volumeETH_not: deprecated_BigDecimal
+  volumeETH_gt: deprecated_BigDecimal
+  volumeETH_lt: deprecated_BigDecimal
+  volumeETH_gte: deprecated_BigDecimal
+  volumeETH_lte: deprecated_BigDecimal
+  volumeETH_in: [deprecated_BigDecimal!]
+  volumeETH_not_in: [deprecated_BigDecimal!]
+  untrackedVolumeUSD: deprecated_BigDecimal
+  untrackedVolumeUSD_not: deprecated_BigDecimal
+  untrackedVolumeUSD_gt: deprecated_BigDecimal
+  untrackedVolumeUSD_lt: deprecated_BigDecimal
+  untrackedVolumeUSD_gte: deprecated_BigDecimal
+  untrackedVolumeUSD_lte: deprecated_BigDecimal
+  untrackedVolumeUSD_in: [deprecated_BigDecimal!]
+  untrackedVolumeUSD_not_in: [deprecated_BigDecimal!]
+  liquidityUSD: deprecated_BigDecimal
+  liquidityUSD_not: deprecated_BigDecimal
+  liquidityUSD_gt: deprecated_BigDecimal
+  liquidityUSD_lt: deprecated_BigDecimal
+  liquidityUSD_gte: deprecated_BigDecimal
+  liquidityUSD_lte: deprecated_BigDecimal
+  liquidityUSD_in: [deprecated_BigDecimal!]
+  liquidityUSD_not_in: [deprecated_BigDecimal!]
+  liquidityETH: deprecated_BigDecimal
+  liquidityETH_not: deprecated_BigDecimal
+  liquidityETH_gt: deprecated_BigDecimal
+  liquidityETH_lt: deprecated_BigDecimal
+  liquidityETH_gte: deprecated_BigDecimal
+  liquidityETH_lte: deprecated_BigDecimal
+  liquidityETH_in: [deprecated_BigDecimal!]
+  liquidityETH_not_in: [deprecated_BigDecimal!]
+  txCount: BigInt
+  txCount_not: BigInt
+  txCount_gt: BigInt
+  txCount_lt: BigInt
+  txCount_gte: BigInt
+  txCount_lte: BigInt
+  txCount_in: [BigInt!]
+  txCount_not_in: [BigInt!]
+  tokenCount: BigInt
+  tokenCount_not: BigInt
+  tokenCount_gt: BigInt
+  tokenCount_lt: BigInt
+  tokenCount_gte: BigInt
+  tokenCount_lte: BigInt
+  tokenCount_in: [BigInt!]
+  tokenCount_not_in: [BigInt!]
+  userCount: BigInt
+  userCount_not: BigInt
+  userCount_gt: BigInt
+  userCount_lt: BigInt
+  userCount_gte: BigInt
+  userCount_lte: BigInt
+  userCount_in: [BigInt!]
+  userCount_not_in: [BigInt!]
+  pairs_: deprecated_Pair_filter
+  tokens_: deprecated_Token_filter
+  hourData_: deprecated_HourData_filter
+  dayData_: deprecated_DayData_filter
+  """Filter for the block changed event."""
+  _change_block: deprecated_BlockChangedFilter
+  and: [deprecated_Factory_filter]
+  or: [deprecated_Factory_filter]
+}
+
+enum deprecated_Factory_orderBy {
+  id
+  pairCount
+  volumeUSD
+  volumeETH
+  untrackedVolumeUSD
+  liquidityUSD
+  liquidityETH
+  txCount
+  tokenCount
+  userCount
+  pairs
+  tokens
+  hourData
+  dayData
+}
+
+type deprecated_HourData {
+  id: ID!
+  date: Int!
+  factory: deprecated_Factory!
+  volumeETH: deprecated_BigDecimal!
+  volumeUSD: deprecated_BigDecimal!
+  untrackedVolume: deprecated_BigDecimal!
+  liquidityETH: deprecated_BigDecimal!
+  liquidityUSD: deprecated_BigDecimal!
+  txCount: BigInt!
+}
+
+input deprecated_HourData_filter {
+  id: ID
+  id_not: ID
+  id_gt: ID
+  id_lt: ID
+  id_gte: ID
+  id_lte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  date: Int
+  date_not: Int
+  date_gt: Int
+  date_lt: Int
+  date_gte: Int
+  date_lte: Int
+  date_in: [Int!]
+  date_not_in: [Int!]
+  factory: String
+  factory_not: String
+  factory_gt: String
+  factory_lt: String
+  factory_gte: String
+  factory_lte: String
+  factory_in: [String!]
+  factory_not_in: [String!]
+  factory_contains: String
+  factory_contains_nocase: String
+  factory_not_contains: String
+  factory_not_contains_nocase: String
+  factory_starts_with: String
+  factory_starts_with_nocase: String
+  factory_not_starts_with: String
+  factory_not_starts_with_nocase: String
+  factory_ends_with: String
+  factory_ends_with_nocase: String
+  factory_not_ends_with: String
+  factory_not_ends_with_nocase: String
+  factory_: deprecated_Factory_filter
+  volumeETH: deprecated_BigDecimal
+  volumeETH_not: deprecated_BigDecimal
+  volumeETH_gt: deprecated_BigDecimal
+  volumeETH_lt: deprecated_BigDecimal
+  volumeETH_gte: deprecated_BigDecimal
+  volumeETH_lte: deprecated_BigDecimal
+  volumeETH_in: [deprecated_BigDecimal!]
+  volumeETH_not_in: [deprecated_BigDecimal!]
+  volumeUSD: deprecated_BigDecimal
+  volumeUSD_not: deprecated_BigDecimal
+  volumeUSD_gt: deprecated_BigDecimal
+  volumeUSD_lt: deprecated_BigDecimal
+  volumeUSD_gte: deprecated_BigDecimal
+  volumeUSD_lte: deprecated_BigDecimal
+  volumeUSD_in: [deprecated_BigDecimal!]
+  volumeUSD_not_in: [deprecated_BigDecimal!]
+  untrackedVolume: deprecated_BigDecimal
+  untrackedVolume_not: deprecated_BigDecimal
+  untrackedVolume_gt: deprecated_BigDecimal
+  untrackedVolume_lt: deprecated_BigDecimal
+  untrackedVolume_gte: deprecated_BigDecimal
+  untrackedVolume_lte: deprecated_BigDecimal
+  untrackedVolume_in: [deprecated_BigDecimal!]
+  untrackedVolume_not_in: [deprecated_BigDecimal!]
+  liquidityETH: deprecated_BigDecimal
+  liquidityETH_not: deprecated_BigDecimal
+  liquidityETH_gt: deprecated_BigDecimal
+  liquidityETH_lt: deprecated_BigDecimal
+  liquidityETH_gte: deprecated_BigDecimal
+  liquidityETH_lte: deprecated_BigDecimal
+  liquidityETH_in: [deprecated_BigDecimal!]
+  liquidityETH_not_in: [deprecated_BigDecimal!]
+  liquidityUSD: deprecated_BigDecimal
+  liquidityUSD_not: deprecated_BigDecimal
+  liquidityUSD_gt: deprecated_BigDecimal
+  liquidityUSD_lt: deprecated_BigDecimal
+  liquidityUSD_gte: deprecated_BigDecimal
+  liquidityUSD_lte: deprecated_BigDecimal
+  liquidityUSD_in: [deprecated_BigDecimal!]
+  liquidityUSD_not_in: [deprecated_BigDecimal!]
+  txCount: BigInt
+  txCount_not: BigInt
+  txCount_gt: BigInt
+  txCount_lt: BigInt
+  txCount_gte: BigInt
+  txCount_lte: BigInt
+  txCount_in: [BigInt!]
+  txCount_not_in: [BigInt!]
+  """Filter for the block changed event."""
+  _change_block: deprecated_BlockChangedFilter
+  and: [deprecated_HourData_filter]
+  or: [deprecated_HourData_filter]
+}
+
+enum deprecated_HourData_orderBy {
+  id
+  date
+  factory
+  factory__id
+  factory__pairCount
+  factory__volumeUSD
+  factory__volumeETH
+  factory__untrackedVolumeUSD
+  factory__liquidityUSD
+  factory__liquidityETH
+  factory__txCount
+  factory__tokenCount
+  factory__userCount
+  volumeETH
+  volumeUSD
+  untrackedVolume
+  liquidityETH
+  liquidityUSD
+  txCount
+}
+
+"""
+8 bytes signed integer
+
+"""
+scalar deprecated_Int8
+
+type deprecated_LiquidityPosition {
+  id: ID!
+  user: deprecated_User!
+  pair: deprecated_Pair!
+  liquidityTokenBalance: deprecated_BigDecimal!
+  snapshots(skip: Int = 0, first: Int = 100, orderBy: deprecated_LiquidityPositionSnapshot_orderBy, orderDirection: deprecated_OrderDirection, where: deprecated_LiquidityPositionSnapshot_filter): [deprecated_LiquidityPositionSnapshot!]!
+  block: Int!
+  timestamp: Int!
+}
+
+type deprecated_LiquidityPositionSnapshot {
+  id: ID!
+  liquidityPosition: deprecated_LiquidityPosition!
+  timestamp: Int!
+  block: Int!
+  user: deprecated_User!
+  pair: deprecated_Pair!
+  token0PriceUSD: deprecated_BigDecimal!
+  token1PriceUSD: deprecated_BigDecimal!
+  reserve0: deprecated_BigDecimal!
+  reserve1: deprecated_BigDecimal!
+  reserveUSD: deprecated_BigDecimal!
+  liquidityTokenTotalSupply: deprecated_BigDecimal!
+  liquidityTokenBalance: deprecated_BigDecimal!
+}
+
+input deprecated_LiquidityPositionSnapshot_filter {
+  id: ID
+  id_not: ID
+  id_gt: ID
+  id_lt: ID
+  id_gte: ID
+  id_lte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  liquidityPosition: String
+  liquidityPosition_not: String
+  liquidityPosition_gt: String
+  liquidityPosition_lt: String
+  liquidityPosition_gte: String
+  liquidityPosition_lte: String
+  liquidityPosition_in: [String!]
+  liquidityPosition_not_in: [String!]
+  liquidityPosition_contains: String
+  liquidityPosition_contains_nocase: String
+  liquidityPosition_not_contains: String
+  liquidityPosition_not_contains_nocase: String
+  liquidityPosition_starts_with: String
+  liquidityPosition_starts_with_nocase: String
+  liquidityPosition_not_starts_with: String
+  liquidityPosition_not_starts_with_nocase: String
+  liquidityPosition_ends_with: String
+  liquidityPosition_ends_with_nocase: String
+  liquidityPosition_not_ends_with: String
+  liquidityPosition_not_ends_with_nocase: String
+  liquidityPosition_: deprecated_LiquidityPosition_filter
+  timestamp: Int
+  timestamp_not: Int
+  timestamp_gt: Int
+  timestamp_lt: Int
+  timestamp_gte: Int
+  timestamp_lte: Int
+  timestamp_in: [Int!]
+  timestamp_not_in: [Int!]
+  block: Int
+  block_not: Int
+  block_gt: Int
+  block_lt: Int
+  block_gte: Int
+  block_lte: Int
+  block_in: [Int!]
+  block_not_in: [Int!]
+  user: String
+  user_not: String
+  user_gt: String
+  user_lt: String
+  user_gte: String
+  user_lte: String
+  user_in: [String!]
+  user_not_in: [String!]
+  user_contains: String
+  user_contains_nocase: String
+  user_not_contains: String
+  user_not_contains_nocase: String
+  user_starts_with: String
+  user_starts_with_nocase: String
+  user_not_starts_with: String
+  user_not_starts_with_nocase: String
+  user_ends_with: String
+  user_ends_with_nocase: String
+  user_not_ends_with: String
+  user_not_ends_with_nocase: String
+  user_: deprecated_User_filter
+  pair: String
+  pair_not: String
+  pair_gt: String
+  pair_lt: String
+  pair_gte: String
+  pair_lte: String
+  pair_in: [String!]
+  pair_not_in: [String!]
+  pair_contains: String
+  pair_contains_nocase: String
+  pair_not_contains: String
+  pair_not_contains_nocase: String
+  pair_starts_with: String
+  pair_starts_with_nocase: String
+  pair_not_starts_with: String
+  pair_not_starts_with_nocase: String
+  pair_ends_with: String
+  pair_ends_with_nocase: String
+  pair_not_ends_with: String
+  pair_not_ends_with_nocase: String
+  pair_: deprecated_Pair_filter
+  token0PriceUSD: deprecated_BigDecimal
+  token0PriceUSD_not: deprecated_BigDecimal
+  token0PriceUSD_gt: deprecated_BigDecimal
+  token0PriceUSD_lt: deprecated_BigDecimal
+  token0PriceUSD_gte: deprecated_BigDecimal
+  token0PriceUSD_lte: deprecated_BigDecimal
+  token0PriceUSD_in: [deprecated_BigDecimal!]
+  token0PriceUSD_not_in: [deprecated_BigDecimal!]
+  token1PriceUSD: deprecated_BigDecimal
+  token1PriceUSD_not: deprecated_BigDecimal
+  token1PriceUSD_gt: deprecated_BigDecimal
+  token1PriceUSD_lt: deprecated_BigDecimal
+  token1PriceUSD_gte: deprecated_BigDecimal
+  token1PriceUSD_lte: deprecated_BigDecimal
+  token1PriceUSD_in: [deprecated_BigDecimal!]
+  token1PriceUSD_not_in: [deprecated_BigDecimal!]
+  reserve0: deprecated_BigDecimal
+  reserve0_not: deprecated_BigDecimal
+  reserve0_gt: deprecated_BigDecimal
+  reserve0_lt: deprecated_BigDecimal
+  reserve0_gte: deprecated_BigDecimal
+  reserve0_lte: deprecated_BigDecimal
+  reserve0_in: [deprecated_BigDecimal!]
+  reserve0_not_in: [deprecated_BigDecimal!]
+  reserve1: deprecated_BigDecimal
+  reserve1_not: deprecated_BigDecimal
+  reserve1_gt: deprecated_BigDecimal
+  reserve1_lt: deprecated_BigDecimal
+  reserve1_gte: deprecated_BigDecimal
+  reserve1_lte: deprecated_BigDecimal
+  reserve1_in: [deprecated_BigDecimal!]
+  reserve1_not_in: [deprecated_BigDecimal!]
+  reserveUSD: deprecated_BigDecimal
+  reserveUSD_not: deprecated_BigDecimal
+  reserveUSD_gt: deprecated_BigDecimal
+  reserveUSD_lt: deprecated_BigDecimal
+  reserveUSD_gte: deprecated_BigDecimal
+  reserveUSD_lte: deprecated_BigDecimal
+  reserveUSD_in: [deprecated_BigDecimal!]
+  reserveUSD_not_in: [deprecated_BigDecimal!]
+  liquidityTokenTotalSupply: deprecated_BigDecimal
+  liquidityTokenTotalSupply_not: deprecated_BigDecimal
+  liquidityTokenTotalSupply_gt: deprecated_BigDecimal
+  liquidityTokenTotalSupply_lt: deprecated_BigDecimal
+  liquidityTokenTotalSupply_gte: deprecated_BigDecimal
+  liquidityTokenTotalSupply_lte: deprecated_BigDecimal
+  liquidityTokenTotalSupply_in: [deprecated_BigDecimal!]
+  liquidityTokenTotalSupply_not_in: [deprecated_BigDecimal!]
+  liquidityTokenBalance: deprecated_BigDecimal
+  liquidityTokenBalance_not: deprecated_BigDecimal
+  liquidityTokenBalance_gt: deprecated_BigDecimal
+  liquidityTokenBalance_lt: deprecated_BigDecimal
+  liquidityTokenBalance_gte: deprecated_BigDecimal
+  liquidityTokenBalance_lte: deprecated_BigDecimal
+  liquidityTokenBalance_in: [deprecated_BigDecimal!]
+  liquidityTokenBalance_not_in: [deprecated_BigDecimal!]
+  """Filter for the block changed event."""
+  _change_block: deprecated_BlockChangedFilter
+  and: [deprecated_LiquidityPositionSnapshot_filter]
+  or: [deprecated_LiquidityPositionSnapshot_filter]
+}
+
+enum deprecated_LiquidityPositionSnapshot_orderBy {
+  id
+  liquidityPosition
+  liquidityPosition__id
+  liquidityPosition__liquidityTokenBalance
+  liquidityPosition__block
+  liquidityPosition__timestamp
+  timestamp
+  block
+  user
+  user__id
+  pair
+  pair__id
+  pair__name
+  pair__reserve0
+  pair__reserve1
+  pair__totalSupply
+  pair__reserveETH
+  pair__reserveUSD
+  pair__trackedReserveETH
+  pair__token0Price
+  pair__token1Price
+  pair__volumeToken0
+  pair__volumeToken1
+  pair__volumeUSD
+  pair__untrackedVolumeUSD
+  pair__txCount
+  pair__liquidityProviderCount
+  pair__timestamp
+  pair__block
+  token0PriceUSD
+  token1PriceUSD
+  reserve0
+  reserve1
+  reserveUSD
+  liquidityTokenTotalSupply
+  liquidityTokenBalance
+}
+
+input deprecated_LiquidityPosition_filter {
+  id: ID
+  id_not: ID
+  id_gt: ID
+  id_lt: ID
+  id_gte: ID
+  id_lte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  user: String
+  user_not: String
+  user_gt: String
+  user_lt: String
+  user_gte: String
+  user_lte: String
+  user_in: [String!]
+  user_not_in: [String!]
+  user_contains: String
+  user_contains_nocase: String
+  user_not_contains: String
+  user_not_contains_nocase: String
+  user_starts_with: String
+  user_starts_with_nocase: String
+  user_not_starts_with: String
+  user_not_starts_with_nocase: String
+  user_ends_with: String
+  user_ends_with_nocase: String
+  user_not_ends_with: String
+  user_not_ends_with_nocase: String
+  user_: deprecated_User_filter
+  pair: String
+  pair_not: String
+  pair_gt: String
+  pair_lt: String
+  pair_gte: String
+  pair_lte: String
+  pair_in: [String!]
+  pair_not_in: [String!]
+  pair_contains: String
+  pair_contains_nocase: String
+  pair_not_contains: String
+  pair_not_contains_nocase: String
+  pair_starts_with: String
+  pair_starts_with_nocase: String
+  pair_not_starts_with: String
+  pair_not_starts_with_nocase: String
+  pair_ends_with: String
+  pair_ends_with_nocase: String
+  pair_not_ends_with: String
+  pair_not_ends_with_nocase: String
+  pair_: deprecated_Pair_filter
+  liquidityTokenBalance: deprecated_BigDecimal
+  liquidityTokenBalance_not: deprecated_BigDecimal
+  liquidityTokenBalance_gt: deprecated_BigDecimal
+  liquidityTokenBalance_lt: deprecated_BigDecimal
+  liquidityTokenBalance_gte: deprecated_BigDecimal
+  liquidityTokenBalance_lte: deprecated_BigDecimal
+  liquidityTokenBalance_in: [deprecated_BigDecimal!]
+  liquidityTokenBalance_not_in: [deprecated_BigDecimal!]
+  snapshots_: deprecated_LiquidityPositionSnapshot_filter
+  block: Int
+  block_not: Int
+  block_gt: Int
+  block_lt: Int
+  block_gte: Int
+  block_lte: Int
+  block_in: [Int!]
+  block_not_in: [Int!]
+  timestamp: Int
+  timestamp_not: Int
+  timestamp_gt: Int
+  timestamp_lt: Int
+  timestamp_gte: Int
+  timestamp_lte: Int
+  timestamp_in: [Int!]
+  timestamp_not_in: [Int!]
+  """Filter for the block changed event."""
+  _change_block: deprecated_BlockChangedFilter
+  and: [deprecated_LiquidityPosition_filter]
+  or: [deprecated_LiquidityPosition_filter]
+}
+
+enum deprecated_LiquidityPosition_orderBy {
+  id
+  user
+  user__id
+  pair
+  pair__id
+  pair__name
+  pair__reserve0
+  pair__reserve1
+  pair__totalSupply
+  pair__reserveETH
+  pair__reserveUSD
+  pair__trackedReserveETH
+  pair__token0Price
+  pair__token1Price
+  pair__volumeToken0
+  pair__volumeToken1
+  pair__volumeUSD
+  pair__untrackedVolumeUSD
+  pair__txCount
+  pair__liquidityProviderCount
+  pair__timestamp
+  pair__block
+  liquidityTokenBalance
+  snapshots
+  block
+  timestamp
+}
+
+type deprecated_Mint {
+  id: ID!
+  transaction: deprecated_Transaction!
+  timestamp: BigInt!
+  pair: deprecated_Pair!
+  to: String!
+  liquidity: deprecated_BigDecimal!
+  sender: deprecated_Bytes
+  amount0: deprecated_BigDecimal
+  amount1: deprecated_BigDecimal
+  logIndex: BigInt
+  amountUSD: deprecated_BigDecimal
+  feeTo: deprecated_Bytes
+  feeLiquidity: deprecated_BigDecimal
+}
+
+input deprecated_Mint_filter {
+  id: ID
+  id_not: ID
+  id_gt: ID
+  id_lt: ID
+  id_gte: ID
+  id_lte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  transaction: String
+  transaction_not: String
+  transaction_gt: String
+  transaction_lt: String
+  transaction_gte: String
+  transaction_lte: String
+  transaction_in: [String!]
+  transaction_not_in: [String!]
+  transaction_contains: String
+  transaction_contains_nocase: String
+  transaction_not_contains: String
+  transaction_not_contains_nocase: String
+  transaction_starts_with: String
+  transaction_starts_with_nocase: String
+  transaction_not_starts_with: String
+  transaction_not_starts_with_nocase: String
+  transaction_ends_with: String
+  transaction_ends_with_nocase: String
+  transaction_not_ends_with: String
+  transaction_not_ends_with_nocase: String
+  transaction_: deprecated_Transaction_filter
+  timestamp: BigInt
+  timestamp_not: BigInt
+  timestamp_gt: BigInt
+  timestamp_lt: BigInt
+  timestamp_gte: BigInt
+  timestamp_lte: BigInt
+  timestamp_in: [BigInt!]
+  timestamp_not_in: [BigInt!]
+  pair: String
+  pair_not: String
+  pair_gt: String
+  pair_lt: String
+  pair_gte: String
+  pair_lte: String
+  pair_in: [String!]
+  pair_not_in: [String!]
+  pair_contains: String
+  pair_contains_nocase: String
+  pair_not_contains: String
+  pair_not_contains_nocase: String
+  pair_starts_with: String
+  pair_starts_with_nocase: String
+  pair_not_starts_with: String
+  pair_not_starts_with_nocase: String
+  pair_ends_with: String
+  pair_ends_with_nocase: String
+  pair_not_ends_with: String
+  pair_not_ends_with_nocase: String
+  pair_: deprecated_Pair_filter
+  to: String
+  to_not: String
+  to_gt: String
+  to_lt: String
+  to_gte: String
+  to_lte: String
+  to_in: [String!]
+  to_not_in: [String!]
+  to_contains: String
+  to_contains_nocase: String
+  to_not_contains: String
+  to_not_contains_nocase: String
+  to_starts_with: String
+  to_starts_with_nocase: String
+  to_not_starts_with: String
+  to_not_starts_with_nocase: String
+  to_ends_with: String
+  to_ends_with_nocase: String
+  to_not_ends_with: String
+  to_not_ends_with_nocase: String
+  liquidity: deprecated_BigDecimal
+  liquidity_not: deprecated_BigDecimal
+  liquidity_gt: deprecated_BigDecimal
+  liquidity_lt: deprecated_BigDecimal
+  liquidity_gte: deprecated_BigDecimal
+  liquidity_lte: deprecated_BigDecimal
+  liquidity_in: [deprecated_BigDecimal!]
+  liquidity_not_in: [deprecated_BigDecimal!]
+  sender: deprecated_Bytes
+  sender_not: deprecated_Bytes
+  sender_gt: deprecated_Bytes
+  sender_lt: deprecated_Bytes
+  sender_gte: deprecated_Bytes
+  sender_lte: deprecated_Bytes
+  sender_in: [deprecated_Bytes!]
+  sender_not_in: [deprecated_Bytes!]
+  sender_contains: deprecated_Bytes
+  sender_not_contains: deprecated_Bytes
+  amount0: deprecated_BigDecimal
+  amount0_not: deprecated_BigDecimal
+  amount0_gt: deprecated_BigDecimal
+  amount0_lt: deprecated_BigDecimal
+  amount0_gte: deprecated_BigDecimal
+  amount0_lte: deprecated_BigDecimal
+  amount0_in: [deprecated_BigDecimal!]
+  amount0_not_in: [deprecated_BigDecimal!]
+  amount1: deprecated_BigDecimal
+  amount1_not: deprecated_BigDecimal
+  amount1_gt: deprecated_BigDecimal
+  amount1_lt: deprecated_BigDecimal
+  amount1_gte: deprecated_BigDecimal
+  amount1_lte: deprecated_BigDecimal
+  amount1_in: [deprecated_BigDecimal!]
+  amount1_not_in: [deprecated_BigDecimal!]
+  logIndex: BigInt
+  logIndex_not: BigInt
+  logIndex_gt: BigInt
+  logIndex_lt: BigInt
+  logIndex_gte: BigInt
+  logIndex_lte: BigInt
+  logIndex_in: [BigInt!]
+  logIndex_not_in: [BigInt!]
+  amountUSD: deprecated_BigDecimal
+  amountUSD_not: deprecated_BigDecimal
+  amountUSD_gt: deprecated_BigDecimal
+  amountUSD_lt: deprecated_BigDecimal
+  amountUSD_gte: deprecated_BigDecimal
+  amountUSD_lte: deprecated_BigDecimal
+  amountUSD_in: [deprecated_BigDecimal!]
+  amountUSD_not_in: [deprecated_BigDecimal!]
+  feeTo: deprecated_Bytes
+  feeTo_not: deprecated_Bytes
+  feeTo_gt: deprecated_Bytes
+  feeTo_lt: deprecated_Bytes
+  feeTo_gte: deprecated_Bytes
+  feeTo_lte: deprecated_Bytes
+  feeTo_in: [deprecated_Bytes!]
+  feeTo_not_in: [deprecated_Bytes!]
+  feeTo_contains: deprecated_Bytes
+  feeTo_not_contains: deprecated_Bytes
+  feeLiquidity: deprecated_BigDecimal
+  feeLiquidity_not: deprecated_BigDecimal
+  feeLiquidity_gt: deprecated_BigDecimal
+  feeLiquidity_lt: deprecated_BigDecimal
+  feeLiquidity_gte: deprecated_BigDecimal
+  feeLiquidity_lte: deprecated_BigDecimal
+  feeLiquidity_in: [deprecated_BigDecimal!]
+  feeLiquidity_not_in: [deprecated_BigDecimal!]
+  """Filter for the block changed event."""
+  _change_block: deprecated_BlockChangedFilter
+  and: [deprecated_Mint_filter]
+  or: [deprecated_Mint_filter]
+}
+
+enum deprecated_Mint_orderBy {
+  id
+  transaction
+  transaction__id
+  transaction__blockNumber
+  transaction__timestamp
+  timestamp
+  pair
+  pair__id
+  pair__name
+  pair__reserve0
+  pair__reserve1
+  pair__totalSupply
+  pair__reserveETH
+  pair__reserveUSD
+  pair__trackedReserveETH
+  pair__token0Price
+  pair__token1Price
+  pair__volumeToken0
+  pair__volumeToken1
+  pair__volumeUSD
+  pair__untrackedVolumeUSD
+  pair__txCount
+  pair__liquidityProviderCount
+  pair__timestamp
+  pair__block
+  to
+  liquidity
+  sender
+  amount0
+  amount1
+  logIndex
+  amountUSD
+  feeTo
+  feeLiquidity
+}
+
+"""Defines the order direction, either ascending or descending"""
+enum deprecated_OrderDirection {
+  asc
+  desc
+}
+
+type deprecated_Pair {
+  id: ID!
+  factory: deprecated_Factory!
+  name: String!
+  token0: deprecated_Token!
+  token1: deprecated_Token!
+  reserve0: deprecated_BigDecimal!
+  reserve1: deprecated_BigDecimal!
+  totalSupply: deprecated_BigDecimal!
+  reserveETH: deprecated_BigDecimal!
+  reserveUSD: deprecated_BigDecimal!
+  trackedReserveETH: deprecated_BigDecimal!
+  token0Price: deprecated_BigDecimal!
+  token1Price: deprecated_BigDecimal!
+  volumeToken0: deprecated_BigDecimal!
+  volumeToken1: deprecated_BigDecimal!
+  volumeUSD: deprecated_BigDecimal!
+  untrackedVolumeUSD: deprecated_BigDecimal!
+  txCount: BigInt!
+  liquidityProviderCount: BigInt!
+  liquidityPositions(skip: Int = 0, first: Int = 100, orderBy: deprecated_LiquidityPosition_orderBy, orderDirection: deprecated_OrderDirection, where: deprecated_LiquidityPosition_filter): [deprecated_LiquidityPosition!]!
+  liquidityPositionSnapshots(skip: Int = 0, first: Int = 100, orderBy: deprecated_LiquidityPositionSnapshot_orderBy, orderDirection: deprecated_OrderDirection, where: deprecated_LiquidityPositionSnapshot_filter): [deprecated_LiquidityPositionSnapshot!]!
+  dayData(skip: Int = 0, first: Int = 100, orderBy: deprecated_PairDayData_orderBy, orderDirection: deprecated_OrderDirection, where: deprecated_PairDayData_filter): [deprecated_PairDayData!]!
+  hourData(skip: Int = 0, first: Int = 100, orderBy: deprecated_PairHourData_orderBy, orderDirection: deprecated_OrderDirection, where: deprecated_PairHourData_filter): [deprecated_PairHourData!]!
+  mints(skip: Int = 0, first: Int = 100, orderBy: deprecated_Mint_orderBy, orderDirection: deprecated_OrderDirection, where: deprecated_Mint_filter): [deprecated_Mint!]!
+  burns(skip: Int = 0, first: Int = 100, orderBy: deprecated_Burn_orderBy, orderDirection: deprecated_OrderDirection, where: deprecated_Burn_filter): [deprecated_Burn!]!
+  swaps(skip: Int = 0, first: Int = 100, orderBy: deprecated_Swap_orderBy, orderDirection: deprecated_OrderDirection, where: deprecated_Swap_filter): [deprecated_Swap!]!
+  timestamp: BigInt!
+  block: BigInt!
+}
+
+type deprecated_PairDayData {
+  id: ID!
+  date: Int!
+  pair: deprecated_Pair!
+  token0: deprecated_Token!
+  token1: deprecated_Token!
+  reserve0: deprecated_BigDecimal!
+  reserve1: deprecated_BigDecimal!
+  totalSupply: deprecated_BigDecimal!
+  reserveUSD: deprecated_BigDecimal!
+  volumeToken0: deprecated_BigDecimal!
+  volumeToken1: deprecated_BigDecimal!
+  volumeUSD: deprecated_BigDecimal!
+  txCount: BigInt!
+}
+
+input deprecated_PairDayData_filter {
+  id: ID
+  id_not: ID
+  id_gt: ID
+  id_lt: ID
+  id_gte: ID
+  id_lte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  date: Int
+  date_not: Int
+  date_gt: Int
+  date_lt: Int
+  date_gte: Int
+  date_lte: Int
+  date_in: [Int!]
+  date_not_in: [Int!]
+  pair: String
+  pair_not: String
+  pair_gt: String
+  pair_lt: String
+  pair_gte: String
+  pair_lte: String
+  pair_in: [String!]
+  pair_not_in: [String!]
+  pair_contains: String
+  pair_contains_nocase: String
+  pair_not_contains: String
+  pair_not_contains_nocase: String
+  pair_starts_with: String
+  pair_starts_with_nocase: String
+  pair_not_starts_with: String
+  pair_not_starts_with_nocase: String
+  pair_ends_with: String
+  pair_ends_with_nocase: String
+  pair_not_ends_with: String
+  pair_not_ends_with_nocase: String
+  pair_: deprecated_Pair_filter
+  token0: String
+  token0_not: String
+  token0_gt: String
+  token0_lt: String
+  token0_gte: String
+  token0_lte: String
+  token0_in: [String!]
+  token0_not_in: [String!]
+  token0_contains: String
+  token0_contains_nocase: String
+  token0_not_contains: String
+  token0_not_contains_nocase: String
+  token0_starts_with: String
+  token0_starts_with_nocase: String
+  token0_not_starts_with: String
+  token0_not_starts_with_nocase: String
+  token0_ends_with: String
+  token0_ends_with_nocase: String
+  token0_not_ends_with: String
+  token0_not_ends_with_nocase: String
+  token0_: deprecated_Token_filter
+  token1: String
+  token1_not: String
+  token1_gt: String
+  token1_lt: String
+  token1_gte: String
+  token1_lte: String
+  token1_in: [String!]
+  token1_not_in: [String!]
+  token1_contains: String
+  token1_contains_nocase: String
+  token1_not_contains: String
+  token1_not_contains_nocase: String
+  token1_starts_with: String
+  token1_starts_with_nocase: String
+  token1_not_starts_with: String
+  token1_not_starts_with_nocase: String
+  token1_ends_with: String
+  token1_ends_with_nocase: String
+  token1_not_ends_with: String
+  token1_not_ends_with_nocase: String
+  token1_: deprecated_Token_filter
+  reserve0: deprecated_BigDecimal
+  reserve0_not: deprecated_BigDecimal
+  reserve0_gt: deprecated_BigDecimal
+  reserve0_lt: deprecated_BigDecimal
+  reserve0_gte: deprecated_BigDecimal
+  reserve0_lte: deprecated_BigDecimal
+  reserve0_in: [deprecated_BigDecimal!]
+  reserve0_not_in: [deprecated_BigDecimal!]
+  reserve1: deprecated_BigDecimal
+  reserve1_not: deprecated_BigDecimal
+  reserve1_gt: deprecated_BigDecimal
+  reserve1_lt: deprecated_BigDecimal
+  reserve1_gte: deprecated_BigDecimal
+  reserve1_lte: deprecated_BigDecimal
+  reserve1_in: [deprecated_BigDecimal!]
+  reserve1_not_in: [deprecated_BigDecimal!]
+  totalSupply: deprecated_BigDecimal
+  totalSupply_not: deprecated_BigDecimal
+  totalSupply_gt: deprecated_BigDecimal
+  totalSupply_lt: deprecated_BigDecimal
+  totalSupply_gte: deprecated_BigDecimal
+  totalSupply_lte: deprecated_BigDecimal
+  totalSupply_in: [deprecated_BigDecimal!]
+  totalSupply_not_in: [deprecated_BigDecimal!]
+  reserveUSD: deprecated_BigDecimal
+  reserveUSD_not: deprecated_BigDecimal
+  reserveUSD_gt: deprecated_BigDecimal
+  reserveUSD_lt: deprecated_BigDecimal
+  reserveUSD_gte: deprecated_BigDecimal
+  reserveUSD_lte: deprecated_BigDecimal
+  reserveUSD_in: [deprecated_BigDecimal!]
+  reserveUSD_not_in: [deprecated_BigDecimal!]
+  volumeToken0: deprecated_BigDecimal
+  volumeToken0_not: deprecated_BigDecimal
+  volumeToken0_gt: deprecated_BigDecimal
+  volumeToken0_lt: deprecated_BigDecimal
+  volumeToken0_gte: deprecated_BigDecimal
+  volumeToken0_lte: deprecated_BigDecimal
+  volumeToken0_in: [deprecated_BigDecimal!]
+  volumeToken0_not_in: [deprecated_BigDecimal!]
+  volumeToken1: deprecated_BigDecimal
+  volumeToken1_not: deprecated_BigDecimal
+  volumeToken1_gt: deprecated_BigDecimal
+  volumeToken1_lt: deprecated_BigDecimal
+  volumeToken1_gte: deprecated_BigDecimal
+  volumeToken1_lte: deprecated_BigDecimal
+  volumeToken1_in: [deprecated_BigDecimal!]
+  volumeToken1_not_in: [deprecated_BigDecimal!]
+  volumeUSD: deprecated_BigDecimal
+  volumeUSD_not: deprecated_BigDecimal
+  volumeUSD_gt: deprecated_BigDecimal
+  volumeUSD_lt: deprecated_BigDecimal
+  volumeUSD_gte: deprecated_BigDecimal
+  volumeUSD_lte: deprecated_BigDecimal
+  volumeUSD_in: [deprecated_BigDecimal!]
+  volumeUSD_not_in: [deprecated_BigDecimal!]
+  txCount: BigInt
+  txCount_not: BigInt
+  txCount_gt: BigInt
+  txCount_lt: BigInt
+  txCount_gte: BigInt
+  txCount_lte: BigInt
+  txCount_in: [BigInt!]
+  txCount_not_in: [BigInt!]
+  """Filter for the block changed event."""
+  _change_block: deprecated_BlockChangedFilter
+  and: [deprecated_PairDayData_filter]
+  or: [deprecated_PairDayData_filter]
+}
+
+enum deprecated_PairDayData_orderBy {
+  id
+  date
+  pair
+  pair__id
+  pair__name
+  pair__reserve0
+  pair__reserve1
+  pair__totalSupply
+  pair__reserveETH
+  pair__reserveUSD
+  pair__trackedReserveETH
+  pair__token0Price
+  pair__token1Price
+  pair__volumeToken0
+  pair__volumeToken1
+  pair__volumeUSD
+  pair__untrackedVolumeUSD
+  pair__txCount
+  pair__liquidityProviderCount
+  pair__timestamp
+  pair__block
+  token0
+  token0__id
+  token0__symbol
+  token0__symbolSuccess
+  token0__name
+  token0__nameSuccess
+  token0__decimals
+  token0__decimalsSuccess
+  token0__totalSupply
+  token0__volume
+  token0__volumeUSD
+  token0__untrackedVolumeUSD
+  token0__txCount
+  token0__liquidity
+  token0__derivedETH
+  token1
+  token1__id
+  token1__symbol
+  token1__symbolSuccess
+  token1__name
+  token1__nameSuccess
+  token1__decimals
+  token1__decimalsSuccess
+  token1__totalSupply
+  token1__volume
+  token1__volumeUSD
+  token1__untrackedVolumeUSD
+  token1__txCount
+  token1__liquidity
+  token1__derivedETH
+  reserve0
+  reserve1
+  totalSupply
+  reserveUSD
+  volumeToken0
+  volumeToken1
+  volumeUSD
+  txCount
+}
+
+type deprecated_PairHourData {
+  id: ID!
+  date: Int!
+  pair: deprecated_Pair!
+  reserve0: deprecated_BigDecimal!
+  reserve1: deprecated_BigDecimal!
+  reserveUSD: deprecated_BigDecimal!
+  volumeToken0: deprecated_BigDecimal!
+  volumeToken1: deprecated_BigDecimal!
+  volumeUSD: deprecated_BigDecimal!
+  txCount: BigInt!
+}
+
+input deprecated_PairHourData_filter {
+  id: ID
+  id_not: ID
+  id_gt: ID
+  id_lt: ID
+  id_gte: ID
+  id_lte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  date: Int
+  date_not: Int
+  date_gt: Int
+  date_lt: Int
+  date_gte: Int
+  date_lte: Int
+  date_in: [Int!]
+  date_not_in: [Int!]
+  pair: String
+  pair_not: String
+  pair_gt: String
+  pair_lt: String
+  pair_gte: String
+  pair_lte: String
+  pair_in: [String!]
+  pair_not_in: [String!]
+  pair_contains: String
+  pair_contains_nocase: String
+  pair_not_contains: String
+  pair_not_contains_nocase: String
+  pair_starts_with: String
+  pair_starts_with_nocase: String
+  pair_not_starts_with: String
+  pair_not_starts_with_nocase: String
+  pair_ends_with: String
+  pair_ends_with_nocase: String
+  pair_not_ends_with: String
+  pair_not_ends_with_nocase: String
+  pair_: deprecated_Pair_filter
+  reserve0: deprecated_BigDecimal
+  reserve0_not: deprecated_BigDecimal
+  reserve0_gt: deprecated_BigDecimal
+  reserve0_lt: deprecated_BigDecimal
+  reserve0_gte: deprecated_BigDecimal
+  reserve0_lte: deprecated_BigDecimal
+  reserve0_in: [deprecated_BigDecimal!]
+  reserve0_not_in: [deprecated_BigDecimal!]
+  reserve1: deprecated_BigDecimal
+  reserve1_not: deprecated_BigDecimal
+  reserve1_gt: deprecated_BigDecimal
+  reserve1_lt: deprecated_BigDecimal
+  reserve1_gte: deprecated_BigDecimal
+  reserve1_lte: deprecated_BigDecimal
+  reserve1_in: [deprecated_BigDecimal!]
+  reserve1_not_in: [deprecated_BigDecimal!]
+  reserveUSD: deprecated_BigDecimal
+  reserveUSD_not: deprecated_BigDecimal
+  reserveUSD_gt: deprecated_BigDecimal
+  reserveUSD_lt: deprecated_BigDecimal
+  reserveUSD_gte: deprecated_BigDecimal
+  reserveUSD_lte: deprecated_BigDecimal
+  reserveUSD_in: [deprecated_BigDecimal!]
+  reserveUSD_not_in: [deprecated_BigDecimal!]
+  volumeToken0: deprecated_BigDecimal
+  volumeToken0_not: deprecated_BigDecimal
+  volumeToken0_gt: deprecated_BigDecimal
+  volumeToken0_lt: deprecated_BigDecimal
+  volumeToken0_gte: deprecated_BigDecimal
+  volumeToken0_lte: deprecated_BigDecimal
+  volumeToken0_in: [deprecated_BigDecimal!]
+  volumeToken0_not_in: [deprecated_BigDecimal!]
+  volumeToken1: deprecated_BigDecimal
+  volumeToken1_not: deprecated_BigDecimal
+  volumeToken1_gt: deprecated_BigDecimal
+  volumeToken1_lt: deprecated_BigDecimal
+  volumeToken1_gte: deprecated_BigDecimal
+  volumeToken1_lte: deprecated_BigDecimal
+  volumeToken1_in: [deprecated_BigDecimal!]
+  volumeToken1_not_in: [deprecated_BigDecimal!]
+  volumeUSD: deprecated_BigDecimal
+  volumeUSD_not: deprecated_BigDecimal
+  volumeUSD_gt: deprecated_BigDecimal
+  volumeUSD_lt: deprecated_BigDecimal
+  volumeUSD_gte: deprecated_BigDecimal
+  volumeUSD_lte: deprecated_BigDecimal
+  volumeUSD_in: [deprecated_BigDecimal!]
+  volumeUSD_not_in: [deprecated_BigDecimal!]
+  txCount: BigInt
+  txCount_not: BigInt
+  txCount_gt: BigInt
+  txCount_lt: BigInt
+  txCount_gte: BigInt
+  txCount_lte: BigInt
+  txCount_in: [BigInt!]
+  txCount_not_in: [BigInt!]
+  """Filter for the block changed event."""
+  _change_block: deprecated_BlockChangedFilter
+  and: [deprecated_PairHourData_filter]
+  or: [deprecated_PairHourData_filter]
+}
+
+enum deprecated_PairHourData_orderBy {
+  id
+  date
+  pair
+  pair__id
+  pair__name
+  pair__reserve0
+  pair__reserve1
+  pair__totalSupply
+  pair__reserveETH
+  pair__reserveUSD
+  pair__trackedReserveETH
+  pair__token0Price
+  pair__token1Price
+  pair__volumeToken0
+  pair__volumeToken1
+  pair__volumeUSD
+  pair__untrackedVolumeUSD
+  pair__txCount
+  pair__liquidityProviderCount
+  pair__timestamp
+  pair__block
+  reserve0
+  reserve1
+  reserveUSD
+  volumeToken0
+  volumeToken1
+  volumeUSD
+  txCount
+}
+
+input deprecated_Pair_filter {
+  id: ID
+  id_not: ID
+  id_gt: ID
+  id_lt: ID
+  id_gte: ID
+  id_lte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  factory: String
+  factory_not: String
+  factory_gt: String
+  factory_lt: String
+  factory_gte: String
+  factory_lte: String
+  factory_in: [String!]
+  factory_not_in: [String!]
+  factory_contains: String
+  factory_contains_nocase: String
+  factory_not_contains: String
+  factory_not_contains_nocase: String
+  factory_starts_with: String
+  factory_starts_with_nocase: String
+  factory_not_starts_with: String
+  factory_not_starts_with_nocase: String
+  factory_ends_with: String
+  factory_ends_with_nocase: String
+  factory_not_ends_with: String
+  factory_not_ends_with_nocase: String
+  factory_: deprecated_Factory_filter
+  name: String
+  name_not: String
+  name_gt: String
+  name_lt: String
+  name_gte: String
+  name_lte: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_contains: String
+  name_contains_nocase: String
+  name_not_contains: String
+  name_not_contains_nocase: String
+  name_starts_with: String
+  name_starts_with_nocase: String
+  name_not_starts_with: String
+  name_not_starts_with_nocase: String
+  name_ends_with: String
+  name_ends_with_nocase: String
+  name_not_ends_with: String
+  name_not_ends_with_nocase: String
+  token0: String
+  token0_not: String
+  token0_gt: String
+  token0_lt: String
+  token0_gte: String
+  token0_lte: String
+  token0_in: [String!]
+  token0_not_in: [String!]
+  token0_contains: String
+  token0_contains_nocase: String
+  token0_not_contains: String
+  token0_not_contains_nocase: String
+  token0_starts_with: String
+  token0_starts_with_nocase: String
+  token0_not_starts_with: String
+  token0_not_starts_with_nocase: String
+  token0_ends_with: String
+  token0_ends_with_nocase: String
+  token0_not_ends_with: String
+  token0_not_ends_with_nocase: String
+  token0_: deprecated_Token_filter
+  token1: String
+  token1_not: String
+  token1_gt: String
+  token1_lt: String
+  token1_gte: String
+  token1_lte: String
+  token1_in: [String!]
+  token1_not_in: [String!]
+  token1_contains: String
+  token1_contains_nocase: String
+  token1_not_contains: String
+  token1_not_contains_nocase: String
+  token1_starts_with: String
+  token1_starts_with_nocase: String
+  token1_not_starts_with: String
+  token1_not_starts_with_nocase: String
+  token1_ends_with: String
+  token1_ends_with_nocase: String
+  token1_not_ends_with: String
+  token1_not_ends_with_nocase: String
+  token1_: deprecated_Token_filter
+  reserve0: deprecated_BigDecimal
+  reserve0_not: deprecated_BigDecimal
+  reserve0_gt: deprecated_BigDecimal
+  reserve0_lt: deprecated_BigDecimal
+  reserve0_gte: deprecated_BigDecimal
+  reserve0_lte: deprecated_BigDecimal
+  reserve0_in: [deprecated_BigDecimal!]
+  reserve0_not_in: [deprecated_BigDecimal!]
+  reserve1: deprecated_BigDecimal
+  reserve1_not: deprecated_BigDecimal
+  reserve1_gt: deprecated_BigDecimal
+  reserve1_lt: deprecated_BigDecimal
+  reserve1_gte: deprecated_BigDecimal
+  reserve1_lte: deprecated_BigDecimal
+  reserve1_in: [deprecated_BigDecimal!]
+  reserve1_not_in: [deprecated_BigDecimal!]
+  totalSupply: deprecated_BigDecimal
+  totalSupply_not: deprecated_BigDecimal
+  totalSupply_gt: deprecated_BigDecimal
+  totalSupply_lt: deprecated_BigDecimal
+  totalSupply_gte: deprecated_BigDecimal
+  totalSupply_lte: deprecated_BigDecimal
+  totalSupply_in: [deprecated_BigDecimal!]
+  totalSupply_not_in: [deprecated_BigDecimal!]
+  reserveETH: deprecated_BigDecimal
+  reserveETH_not: deprecated_BigDecimal
+  reserveETH_gt: deprecated_BigDecimal
+  reserveETH_lt: deprecated_BigDecimal
+  reserveETH_gte: deprecated_BigDecimal
+  reserveETH_lte: deprecated_BigDecimal
+  reserveETH_in: [deprecated_BigDecimal!]
+  reserveETH_not_in: [deprecated_BigDecimal!]
+  reserveUSD: deprecated_BigDecimal
+  reserveUSD_not: deprecated_BigDecimal
+  reserveUSD_gt: deprecated_BigDecimal
+  reserveUSD_lt: deprecated_BigDecimal
+  reserveUSD_gte: deprecated_BigDecimal
+  reserveUSD_lte: deprecated_BigDecimal
+  reserveUSD_in: [deprecated_BigDecimal!]
+  reserveUSD_not_in: [deprecated_BigDecimal!]
+  trackedReserveETH: deprecated_BigDecimal
+  trackedReserveETH_not: deprecated_BigDecimal
+  trackedReserveETH_gt: deprecated_BigDecimal
+  trackedReserveETH_lt: deprecated_BigDecimal
+  trackedReserveETH_gte: deprecated_BigDecimal
+  trackedReserveETH_lte: deprecated_BigDecimal
+  trackedReserveETH_in: [deprecated_BigDecimal!]
+  trackedReserveETH_not_in: [deprecated_BigDecimal!]
+  token0Price: deprecated_BigDecimal
+  token0Price_not: deprecated_BigDecimal
+  token0Price_gt: deprecated_BigDecimal
+  token0Price_lt: deprecated_BigDecimal
+  token0Price_gte: deprecated_BigDecimal
+  token0Price_lte: deprecated_BigDecimal
+  token0Price_in: [deprecated_BigDecimal!]
+  token0Price_not_in: [deprecated_BigDecimal!]
+  token1Price: deprecated_BigDecimal
+  token1Price_not: deprecated_BigDecimal
+  token1Price_gt: deprecated_BigDecimal
+  token1Price_lt: deprecated_BigDecimal
+  token1Price_gte: deprecated_BigDecimal
+  token1Price_lte: deprecated_BigDecimal
+  token1Price_in: [deprecated_BigDecimal!]
+  token1Price_not_in: [deprecated_BigDecimal!]
+  volumeToken0: deprecated_BigDecimal
+  volumeToken0_not: deprecated_BigDecimal
+  volumeToken0_gt: deprecated_BigDecimal
+  volumeToken0_lt: deprecated_BigDecimal
+  volumeToken0_gte: deprecated_BigDecimal
+  volumeToken0_lte: deprecated_BigDecimal
+  volumeToken0_in: [deprecated_BigDecimal!]
+  volumeToken0_not_in: [deprecated_BigDecimal!]
+  volumeToken1: deprecated_BigDecimal
+  volumeToken1_not: deprecated_BigDecimal
+  volumeToken1_gt: deprecated_BigDecimal
+  volumeToken1_lt: deprecated_BigDecimal
+  volumeToken1_gte: deprecated_BigDecimal
+  volumeToken1_lte: deprecated_BigDecimal
+  volumeToken1_in: [deprecated_BigDecimal!]
+  volumeToken1_not_in: [deprecated_BigDecimal!]
+  volumeUSD: deprecated_BigDecimal
+  volumeUSD_not: deprecated_BigDecimal
+  volumeUSD_gt: deprecated_BigDecimal
+  volumeUSD_lt: deprecated_BigDecimal
+  volumeUSD_gte: deprecated_BigDecimal
+  volumeUSD_lte: deprecated_BigDecimal
+  volumeUSD_in: [deprecated_BigDecimal!]
+  volumeUSD_not_in: [deprecated_BigDecimal!]
+  untrackedVolumeUSD: deprecated_BigDecimal
+  untrackedVolumeUSD_not: deprecated_BigDecimal
+  untrackedVolumeUSD_gt: deprecated_BigDecimal
+  untrackedVolumeUSD_lt: deprecated_BigDecimal
+  untrackedVolumeUSD_gte: deprecated_BigDecimal
+  untrackedVolumeUSD_lte: deprecated_BigDecimal
+  untrackedVolumeUSD_in: [deprecated_BigDecimal!]
+  untrackedVolumeUSD_not_in: [deprecated_BigDecimal!]
+  txCount: BigInt
+  txCount_not: BigInt
+  txCount_gt: BigInt
+  txCount_lt: BigInt
+  txCount_gte: BigInt
+  txCount_lte: BigInt
+  txCount_in: [BigInt!]
+  txCount_not_in: [BigInt!]
+  liquidityProviderCount: BigInt
+  liquidityProviderCount_not: BigInt
+  liquidityProviderCount_gt: BigInt
+  liquidityProviderCount_lt: BigInt
+  liquidityProviderCount_gte: BigInt
+  liquidityProviderCount_lte: BigInt
+  liquidityProviderCount_in: [BigInt!]
+  liquidityProviderCount_not_in: [BigInt!]
+  liquidityPositions_: deprecated_LiquidityPosition_filter
+  liquidityPositionSnapshots_: deprecated_LiquidityPositionSnapshot_filter
+  dayData_: deprecated_PairDayData_filter
+  hourData_: deprecated_PairHourData_filter
+  mints_: deprecated_Mint_filter
+  burns_: deprecated_Burn_filter
+  swaps_: deprecated_Swap_filter
+  timestamp: BigInt
+  timestamp_not: BigInt
+  timestamp_gt: BigInt
+  timestamp_lt: BigInt
+  timestamp_gte: BigInt
+  timestamp_lte: BigInt
+  timestamp_in: [BigInt!]
+  timestamp_not_in: [BigInt!]
+  block: BigInt
+  block_not: BigInt
+  block_gt: BigInt
+  block_lt: BigInt
+  block_gte: BigInt
+  block_lte: BigInt
+  block_in: [BigInt!]
+  block_not_in: [BigInt!]
+  """Filter for the block changed event."""
+  _change_block: deprecated_BlockChangedFilter
+  and: [deprecated_Pair_filter]
+  or: [deprecated_Pair_filter]
+}
+
+enum deprecated_Pair_orderBy {
+  id
+  factory
+  factory__id
+  factory__pairCount
+  factory__volumeUSD
+  factory__volumeETH
+  factory__untrackedVolumeUSD
+  factory__liquidityUSD
+  factory__liquidityETH
+  factory__txCount
+  factory__tokenCount
+  factory__userCount
+  name
+  token0
+  token0__id
+  token0__symbol
+  token0__symbolSuccess
+  token0__name
+  token0__nameSuccess
+  token0__decimals
+  token0__decimalsSuccess
+  token0__totalSupply
+  token0__volume
+  token0__volumeUSD
+  token0__untrackedVolumeUSD
+  token0__txCount
+  token0__liquidity
+  token0__derivedETH
+  token1
+  token1__id
+  token1__symbol
+  token1__symbolSuccess
+  token1__name
+  token1__nameSuccess
+  token1__decimals
+  token1__decimalsSuccess
+  token1__totalSupply
+  token1__volume
+  token1__volumeUSD
+  token1__untrackedVolumeUSD
+  token1__txCount
+  token1__liquidity
+  token1__derivedETH
+  reserve0
+  reserve1
+  totalSupply
+  reserveETH
+  reserveUSD
+  trackedReserveETH
+  token0Price
+  token1Price
+  volumeToken0
+  volumeToken1
+  volumeUSD
+  untrackedVolumeUSD
+  txCount
+  liquidityProviderCount
+  liquidityPositions
+  liquidityPositionSnapshots
+  dayData
+  hourData
+  mints
+  burns
+  swaps
+  timestamp
+  block
+}
+
+type Query {
+  deprecated_user(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): deprecated_User
+  deprecated_users(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: deprecated_User_orderBy
+    orderDirection: deprecated_OrderDirection
+    where: deprecated_User_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): [deprecated_User!]! @merge(keyField: "id", keyArg: "where.id_in")
+  deprecated_bundle(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): deprecated_Bundle
+  deprecated_bundles(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: deprecated_Bundle_orderBy
+    orderDirection: deprecated_OrderDirection
+    where: deprecated_Bundle_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): [deprecated_Bundle!]! @merge(keyField: "id", keyArg: "where.id_in")
+  deprecated_factory(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): deprecated_Factory
+  deprecated_factories(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: deprecated_Factory_orderBy
+    orderDirection: deprecated_OrderDirection
+    where: deprecated_Factory_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): [deprecated_Factory!]! @merge(keyField: "id", keyArg: "where.id_in")
+  deprecated_hourData(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): deprecated_HourData
+  deprecated_hourDatas(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: deprecated_HourData_orderBy
+    orderDirection: deprecated_OrderDirection
+    where: deprecated_HourData_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): [deprecated_HourData!]! @merge(keyField: "id", keyArg: "where.id_in")
+  deprecated_dayData(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): deprecated_DayData
+  deprecated_dayDatas(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: deprecated_DayData_orderBy
+    orderDirection: deprecated_OrderDirection
+    where: deprecated_DayData_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): [deprecated_DayData!]! @merge(keyField: "id", keyArg: "where.id_in")
+  deprecated_token(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): deprecated_Token
+  deprecated_tokens(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: deprecated_Token_orderBy
+    orderDirection: deprecated_OrderDirection
+    where: deprecated_Token_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): [deprecated_Token!]! @merge(keyField: "id", keyArg: "where.id_in")
+  deprecated_tokenHourData(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): deprecated_TokenHourData
+  deprecated_tokenHourDatas(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: deprecated_TokenHourData_orderBy
+    orderDirection: deprecated_OrderDirection
+    where: deprecated_TokenHourData_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): [deprecated_TokenHourData!]! @merge(keyField: "id", keyArg: "where.id_in")
+  deprecated_tokenDayData(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): deprecated_TokenDayData
+  deprecated_tokenDayDatas(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: deprecated_TokenDayData_orderBy
+    orderDirection: deprecated_OrderDirection
+    where: deprecated_TokenDayData_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): [deprecated_TokenDayData!]! @merge(keyField: "id", keyArg: "where.id_in")
+  deprecated_pair(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): deprecated_Pair
+  deprecated_pairs(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: deprecated_Pair_orderBy
+    orderDirection: deprecated_OrderDirection
+    where: deprecated_Pair_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): [deprecated_Pair!]! @merge(keyField: "id", keyArg: "where.id_in")
+  deprecated_pairHourData(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): deprecated_PairHourData
+  deprecated_pairHourDatas(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: deprecated_PairHourData_orderBy
+    orderDirection: deprecated_OrderDirection
+    where: deprecated_PairHourData_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): [deprecated_PairHourData!]! @merge(keyField: "id", keyArg: "where.id_in")
+  deprecated_pairDayData(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): deprecated_PairDayData
+  deprecated_pairDayDatas(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: deprecated_PairDayData_orderBy
+    orderDirection: deprecated_OrderDirection
+    where: deprecated_PairDayData_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): [deprecated_PairDayData!]! @merge(keyField: "id", keyArg: "where.id_in")
+  deprecated_liquidityPosition(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): deprecated_LiquidityPosition
+  deprecated_liquidityPositions(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: deprecated_LiquidityPosition_orderBy
+    orderDirection: deprecated_OrderDirection
+    where: deprecated_LiquidityPosition_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): [deprecated_LiquidityPosition!]! @merge(keyField: "id", keyArg: "where.id_in")
+  deprecated_liquidityPositionSnapshot(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): deprecated_LiquidityPositionSnapshot
+  deprecated_liquidityPositionSnapshots(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: deprecated_LiquidityPositionSnapshot_orderBy
+    orderDirection: deprecated_OrderDirection
+    where: deprecated_LiquidityPositionSnapshot_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): [deprecated_LiquidityPositionSnapshot!]! @merge(keyField: "id", keyArg: "where.id_in")
+  deprecated_transaction(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): deprecated_Transaction
+  deprecated_transactions(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: deprecated_Transaction_orderBy
+    orderDirection: deprecated_OrderDirection
+    where: deprecated_Transaction_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): [deprecated_Transaction!]! @merge(keyField: "id", keyArg: "where.id_in")
+  deprecated_mint(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): deprecated_Mint
+  deprecated_mints(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: deprecated_Mint_orderBy
+    orderDirection: deprecated_OrderDirection
+    where: deprecated_Mint_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): [deprecated_Mint!]! @merge(keyField: "id", keyArg: "where.id_in")
+  deprecated_burn(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): deprecated_Burn
+  deprecated_burns(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: deprecated_Burn_orderBy
+    orderDirection: deprecated_OrderDirection
+    where: deprecated_Burn_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): [deprecated_Burn!]! @merge(keyField: "id", keyArg: "where.id_in")
+  deprecated_swap(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): deprecated_Swap
+  deprecated_swaps(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: deprecated_Swap_orderBy
+    orderDirection: deprecated_OrderDirection
+    where: deprecated_Swap_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): [deprecated_Swap!]! @merge(keyField: "id", keyArg: "where.id_in")
+  """Access to subgraph metadata"""
+  deprecated__meta(block: deprecated_Block_height): deprecated__Meta_
+}
+
+type Subscription {
+  deprecated_user(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): deprecated_User
+  deprecated_users(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: deprecated_User_orderBy
+    orderDirection: deprecated_OrderDirection
+    where: deprecated_User_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): [deprecated_User!]!
+  deprecated_bundle(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): deprecated_Bundle
+  deprecated_bundles(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: deprecated_Bundle_orderBy
+    orderDirection: deprecated_OrderDirection
+    where: deprecated_Bundle_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): [deprecated_Bundle!]!
+  deprecated_factory(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): deprecated_Factory
+  deprecated_factories(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: deprecated_Factory_orderBy
+    orderDirection: deprecated_OrderDirection
+    where: deprecated_Factory_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): [deprecated_Factory!]!
+  deprecated_hourData(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): deprecated_HourData
+  deprecated_hourDatas(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: deprecated_HourData_orderBy
+    orderDirection: deprecated_OrderDirection
+    where: deprecated_HourData_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): [deprecated_HourData!]!
+  deprecated_dayData(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): deprecated_DayData
+  deprecated_dayDatas(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: deprecated_DayData_orderBy
+    orderDirection: deprecated_OrderDirection
+    where: deprecated_DayData_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): [deprecated_DayData!]!
+  deprecated_token(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): deprecated_Token
+  deprecated_tokens(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: deprecated_Token_orderBy
+    orderDirection: deprecated_OrderDirection
+    where: deprecated_Token_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): [deprecated_Token!]!
+  deprecated_tokenHourData(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): deprecated_TokenHourData
+  deprecated_tokenHourDatas(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: deprecated_TokenHourData_orderBy
+    orderDirection: deprecated_OrderDirection
+    where: deprecated_TokenHourData_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): [deprecated_TokenHourData!]!
+  deprecated_tokenDayData(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): deprecated_TokenDayData
+  deprecated_tokenDayDatas(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: deprecated_TokenDayData_orderBy
+    orderDirection: deprecated_OrderDirection
+    where: deprecated_TokenDayData_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): [deprecated_TokenDayData!]!
+  deprecated_pair(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): deprecated_Pair
+  deprecated_pairs(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: deprecated_Pair_orderBy
+    orderDirection: deprecated_OrderDirection
+    where: deprecated_Pair_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): [deprecated_Pair!]!
+  deprecated_pairHourData(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): deprecated_PairHourData
+  deprecated_pairHourDatas(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: deprecated_PairHourData_orderBy
+    orderDirection: deprecated_OrderDirection
+    where: deprecated_PairHourData_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): [deprecated_PairHourData!]!
+  deprecated_pairDayData(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): deprecated_PairDayData
+  deprecated_pairDayDatas(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: deprecated_PairDayData_orderBy
+    orderDirection: deprecated_OrderDirection
+    where: deprecated_PairDayData_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): [deprecated_PairDayData!]!
+  deprecated_liquidityPosition(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): deprecated_LiquidityPosition
+  deprecated_liquidityPositions(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: deprecated_LiquidityPosition_orderBy
+    orderDirection: deprecated_OrderDirection
+    where: deprecated_LiquidityPosition_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): [deprecated_LiquidityPosition!]!
+  deprecated_liquidityPositionSnapshot(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): deprecated_LiquidityPositionSnapshot
+  deprecated_liquidityPositionSnapshots(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: deprecated_LiquidityPositionSnapshot_orderBy
+    orderDirection: deprecated_OrderDirection
+    where: deprecated_LiquidityPositionSnapshot_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): [deprecated_LiquidityPositionSnapshot!]!
+  deprecated_transaction(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): deprecated_Transaction
+  deprecated_transactions(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: deprecated_Transaction_orderBy
+    orderDirection: deprecated_OrderDirection
+    where: deprecated_Transaction_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): [deprecated_Transaction!]!
+  deprecated_mint(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): deprecated_Mint
+  deprecated_mints(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: deprecated_Mint_orderBy
+    orderDirection: deprecated_OrderDirection
+    where: deprecated_Mint_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): [deprecated_Mint!]!
+  deprecated_burn(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): deprecated_Burn
+  deprecated_burns(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: deprecated_Burn_orderBy
+    orderDirection: deprecated_OrderDirection
+    where: deprecated_Burn_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): [deprecated_Burn!]!
+  deprecated_swap(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): deprecated_Swap
+  deprecated_swaps(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: deprecated_Swap_orderBy
+    orderDirection: deprecated_OrderDirection
+    where: deprecated_Swap_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: deprecated_Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: deprecated__SubgraphErrorPolicy_! = deny
+  ): [deprecated_Swap!]!
+  """Access to subgraph metadata"""
+  deprecated__meta(block: deprecated_Block_height): deprecated__Meta_
+}
+
+type deprecated_Swap {
+  id: ID!
+  transaction: deprecated_Transaction!
+  timestamp: BigInt!
+  pair: deprecated_Pair!
+  sender: String!
+  amount0In: deprecated_BigDecimal!
+  amount1In: deprecated_BigDecimal!
+  amount0Out: deprecated_BigDecimal!
+  amount1Out: deprecated_BigDecimal!
+  to: String!
+  logIndex: BigInt
+  amountUSD: deprecated_BigDecimal!
+}
+
+input deprecated_Swap_filter {
+  id: ID
+  id_not: ID
+  id_gt: ID
+  id_lt: ID
+  id_gte: ID
+  id_lte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  transaction: String
+  transaction_not: String
+  transaction_gt: String
+  transaction_lt: String
+  transaction_gte: String
+  transaction_lte: String
+  transaction_in: [String!]
+  transaction_not_in: [String!]
+  transaction_contains: String
+  transaction_contains_nocase: String
+  transaction_not_contains: String
+  transaction_not_contains_nocase: String
+  transaction_starts_with: String
+  transaction_starts_with_nocase: String
+  transaction_not_starts_with: String
+  transaction_not_starts_with_nocase: String
+  transaction_ends_with: String
+  transaction_ends_with_nocase: String
+  transaction_not_ends_with: String
+  transaction_not_ends_with_nocase: String
+  transaction_: deprecated_Transaction_filter
+  timestamp: BigInt
+  timestamp_not: BigInt
+  timestamp_gt: BigInt
+  timestamp_lt: BigInt
+  timestamp_gte: BigInt
+  timestamp_lte: BigInt
+  timestamp_in: [BigInt!]
+  timestamp_not_in: [BigInt!]
+  pair: String
+  pair_not: String
+  pair_gt: String
+  pair_lt: String
+  pair_gte: String
+  pair_lte: String
+  pair_in: [String!]
+  pair_not_in: [String!]
+  pair_contains: String
+  pair_contains_nocase: String
+  pair_not_contains: String
+  pair_not_contains_nocase: String
+  pair_starts_with: String
+  pair_starts_with_nocase: String
+  pair_not_starts_with: String
+  pair_not_starts_with_nocase: String
+  pair_ends_with: String
+  pair_ends_with_nocase: String
+  pair_not_ends_with: String
+  pair_not_ends_with_nocase: String
+  pair_: deprecated_Pair_filter
+  sender: String
+  sender_not: String
+  sender_gt: String
+  sender_lt: String
+  sender_gte: String
+  sender_lte: String
+  sender_in: [String!]
+  sender_not_in: [String!]
+  sender_contains: String
+  sender_contains_nocase: String
+  sender_not_contains: String
+  sender_not_contains_nocase: String
+  sender_starts_with: String
+  sender_starts_with_nocase: String
+  sender_not_starts_with: String
+  sender_not_starts_with_nocase: String
+  sender_ends_with: String
+  sender_ends_with_nocase: String
+  sender_not_ends_with: String
+  sender_not_ends_with_nocase: String
+  amount0In: deprecated_BigDecimal
+  amount0In_not: deprecated_BigDecimal
+  amount0In_gt: deprecated_BigDecimal
+  amount0In_lt: deprecated_BigDecimal
+  amount0In_gte: deprecated_BigDecimal
+  amount0In_lte: deprecated_BigDecimal
+  amount0In_in: [deprecated_BigDecimal!]
+  amount0In_not_in: [deprecated_BigDecimal!]
+  amount1In: deprecated_BigDecimal
+  amount1In_not: deprecated_BigDecimal
+  amount1In_gt: deprecated_BigDecimal
+  amount1In_lt: deprecated_BigDecimal
+  amount1In_gte: deprecated_BigDecimal
+  amount1In_lte: deprecated_BigDecimal
+  amount1In_in: [deprecated_BigDecimal!]
+  amount1In_not_in: [deprecated_BigDecimal!]
+  amount0Out: deprecated_BigDecimal
+  amount0Out_not: deprecated_BigDecimal
+  amount0Out_gt: deprecated_BigDecimal
+  amount0Out_lt: deprecated_BigDecimal
+  amount0Out_gte: deprecated_BigDecimal
+  amount0Out_lte: deprecated_BigDecimal
+  amount0Out_in: [deprecated_BigDecimal!]
+  amount0Out_not_in: [deprecated_BigDecimal!]
+  amount1Out: deprecated_BigDecimal
+  amount1Out_not: deprecated_BigDecimal
+  amount1Out_gt: deprecated_BigDecimal
+  amount1Out_lt: deprecated_BigDecimal
+  amount1Out_gte: deprecated_BigDecimal
+  amount1Out_lte: deprecated_BigDecimal
+  amount1Out_in: [deprecated_BigDecimal!]
+  amount1Out_not_in: [deprecated_BigDecimal!]
+  to: String
+  to_not: String
+  to_gt: String
+  to_lt: String
+  to_gte: String
+  to_lte: String
+  to_in: [String!]
+  to_not_in: [String!]
+  to_contains: String
+  to_contains_nocase: String
+  to_not_contains: String
+  to_not_contains_nocase: String
+  to_starts_with: String
+  to_starts_with_nocase: String
+  to_not_starts_with: String
+  to_not_starts_with_nocase: String
+  to_ends_with: String
+  to_ends_with_nocase: String
+  to_not_ends_with: String
+  to_not_ends_with_nocase: String
+  logIndex: BigInt
+  logIndex_not: BigInt
+  logIndex_gt: BigInt
+  logIndex_lt: BigInt
+  logIndex_gte: BigInt
+  logIndex_lte: BigInt
+  logIndex_in: [BigInt!]
+  logIndex_not_in: [BigInt!]
+  amountUSD: deprecated_BigDecimal
+  amountUSD_not: deprecated_BigDecimal
+  amountUSD_gt: deprecated_BigDecimal
+  amountUSD_lt: deprecated_BigDecimal
+  amountUSD_gte: deprecated_BigDecimal
+  amountUSD_lte: deprecated_BigDecimal
+  amountUSD_in: [deprecated_BigDecimal!]
+  amountUSD_not_in: [deprecated_BigDecimal!]
+  """Filter for the block changed event."""
+  _change_block: deprecated_BlockChangedFilter
+  and: [deprecated_Swap_filter]
+  or: [deprecated_Swap_filter]
+}
+
+enum deprecated_Swap_orderBy {
+  id
+  transaction
+  transaction__id
+  transaction__blockNumber
+  transaction__timestamp
+  timestamp
+  pair
+  pair__id
+  pair__name
+  pair__reserve0
+  pair__reserve1
+  pair__totalSupply
+  pair__reserveETH
+  pair__reserveUSD
+  pair__trackedReserveETH
+  pair__token0Price
+  pair__token1Price
+  pair__volumeToken0
+  pair__volumeToken1
+  pair__volumeUSD
+  pair__untrackedVolumeUSD
+  pair__txCount
+  pair__liquidityProviderCount
+  pair__timestamp
+  pair__block
+  sender
+  amount0In
+  amount1In
+  amount0Out
+  amount1Out
+  to
+  logIndex
+  amountUSD
+}
+
+"""
+A string representation of microseconds UNIX timestamp (16 digits)
+
+"""
+scalar Timestamp
+
+type deprecated_Token {
+  id: ID!
+  factory: deprecated_Factory!
+  symbol: String!
+  symbolSuccess: Boolean!
+  name: String!
+  nameSuccess: Boolean!
+  decimals: BigInt!
+  decimalsSuccess: Boolean!
+  totalSupply: BigInt!
+  volume: deprecated_BigDecimal!
+  volumeUSD: deprecated_BigDecimal!
+  untrackedVolumeUSD: deprecated_BigDecimal!
+  txCount: BigInt!
+  liquidity: deprecated_BigDecimal!
+  derivedETH: deprecated_BigDecimal!
+  whitelistPairs(skip: Int = 0, first: Int = 100, orderBy: deprecated_Pair_orderBy, orderDirection: deprecated_OrderDirection, where: deprecated_Pair_filter): [deprecated_Pair!]!
+  hourData(skip: Int = 0, first: Int = 100, orderBy: deprecated_TokenHourData_orderBy, orderDirection: deprecated_OrderDirection, where: deprecated_TokenHourData_filter): [deprecated_TokenHourData!]!
+  dayData(skip: Int = 0, first: Int = 100, orderBy: deprecated_TokenDayData_orderBy, orderDirection: deprecated_OrderDirection, where: deprecated_TokenDayData_filter): [deprecated_TokenDayData!]!
+  basePairs(skip: Int = 0, first: Int = 100, orderBy: deprecated_Pair_orderBy, orderDirection: deprecated_OrderDirection, where: deprecated_Pair_filter): [deprecated_Pair!]!
+  quotePairs(skip: Int = 0, first: Int = 100, orderBy: deprecated_Pair_orderBy, orderDirection: deprecated_OrderDirection, where: deprecated_Pair_filter): [deprecated_Pair!]!
+  basePairsDayData(skip: Int = 0, first: Int = 100, orderBy: deprecated_PairDayData_orderBy, orderDirection: deprecated_OrderDirection, where: deprecated_PairDayData_filter): [deprecated_PairDayData!]!
+  quotePairsDayData(skip: Int = 0, first: Int = 100, orderBy: deprecated_PairDayData_orderBy, orderDirection: deprecated_OrderDirection, where: deprecated_PairDayData_filter): [deprecated_PairDayData!]!
+}
+
+type deprecated_TokenDayData {
+  id: ID!
+  date: Int!
+  token: deprecated_Token!
+  volume: deprecated_BigDecimal!
+  volumeETH: deprecated_BigDecimal!
+  volumeUSD: deprecated_BigDecimal!
+  txCount: BigInt!
+  liquidity: deprecated_BigDecimal!
+  liquidityETH: deprecated_BigDecimal!
+  liquidityUSD: deprecated_BigDecimal!
+  priceUSD: deprecated_BigDecimal!
+}
+
+input deprecated_TokenDayData_filter {
+  id: ID
+  id_not: ID
+  id_gt: ID
+  id_lt: ID
+  id_gte: ID
+  id_lte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  date: Int
+  date_not: Int
+  date_gt: Int
+  date_lt: Int
+  date_gte: Int
+  date_lte: Int
+  date_in: [Int!]
+  date_not_in: [Int!]
+  token: String
+  token_not: String
+  token_gt: String
+  token_lt: String
+  token_gte: String
+  token_lte: String
+  token_in: [String!]
+  token_not_in: [String!]
+  token_contains: String
+  token_contains_nocase: String
+  token_not_contains: String
+  token_not_contains_nocase: String
+  token_starts_with: String
+  token_starts_with_nocase: String
+  token_not_starts_with: String
+  token_not_starts_with_nocase: String
+  token_ends_with: String
+  token_ends_with_nocase: String
+  token_not_ends_with: String
+  token_not_ends_with_nocase: String
+  token_: deprecated_Token_filter
+  volume: deprecated_BigDecimal
+  volume_not: deprecated_BigDecimal
+  volume_gt: deprecated_BigDecimal
+  volume_lt: deprecated_BigDecimal
+  volume_gte: deprecated_BigDecimal
+  volume_lte: deprecated_BigDecimal
+  volume_in: [deprecated_BigDecimal!]
+  volume_not_in: [deprecated_BigDecimal!]
+  volumeETH: deprecated_BigDecimal
+  volumeETH_not: deprecated_BigDecimal
+  volumeETH_gt: deprecated_BigDecimal
+  volumeETH_lt: deprecated_BigDecimal
+  volumeETH_gte: deprecated_BigDecimal
+  volumeETH_lte: deprecated_BigDecimal
+  volumeETH_in: [deprecated_BigDecimal!]
+  volumeETH_not_in: [deprecated_BigDecimal!]
+  volumeUSD: deprecated_BigDecimal
+  volumeUSD_not: deprecated_BigDecimal
+  volumeUSD_gt: deprecated_BigDecimal
+  volumeUSD_lt: deprecated_BigDecimal
+  volumeUSD_gte: deprecated_BigDecimal
+  volumeUSD_lte: deprecated_BigDecimal
+  volumeUSD_in: [deprecated_BigDecimal!]
+  volumeUSD_not_in: [deprecated_BigDecimal!]
+  txCount: BigInt
+  txCount_not: BigInt
+  txCount_gt: BigInt
+  txCount_lt: BigInt
+  txCount_gte: BigInt
+  txCount_lte: BigInt
+  txCount_in: [BigInt!]
+  txCount_not_in: [BigInt!]
+  liquidity: deprecated_BigDecimal
+  liquidity_not: deprecated_BigDecimal
+  liquidity_gt: deprecated_BigDecimal
+  liquidity_lt: deprecated_BigDecimal
+  liquidity_gte: deprecated_BigDecimal
+  liquidity_lte: deprecated_BigDecimal
+  liquidity_in: [deprecated_BigDecimal!]
+  liquidity_not_in: [deprecated_BigDecimal!]
+  liquidityETH: deprecated_BigDecimal
+  liquidityETH_not: deprecated_BigDecimal
+  liquidityETH_gt: deprecated_BigDecimal
+  liquidityETH_lt: deprecated_BigDecimal
+  liquidityETH_gte: deprecated_BigDecimal
+  liquidityETH_lte: deprecated_BigDecimal
+  liquidityETH_in: [deprecated_BigDecimal!]
+  liquidityETH_not_in: [deprecated_BigDecimal!]
+  liquidityUSD: deprecated_BigDecimal
+  liquidityUSD_not: deprecated_BigDecimal
+  liquidityUSD_gt: deprecated_BigDecimal
+  liquidityUSD_lt: deprecated_BigDecimal
+  liquidityUSD_gte: deprecated_BigDecimal
+  liquidityUSD_lte: deprecated_BigDecimal
+  liquidityUSD_in: [deprecated_BigDecimal!]
+  liquidityUSD_not_in: [deprecated_BigDecimal!]
+  priceUSD: deprecated_BigDecimal
+  priceUSD_not: deprecated_BigDecimal
+  priceUSD_gt: deprecated_BigDecimal
+  priceUSD_lt: deprecated_BigDecimal
+  priceUSD_gte: deprecated_BigDecimal
+  priceUSD_lte: deprecated_BigDecimal
+  priceUSD_in: [deprecated_BigDecimal!]
+  priceUSD_not_in: [deprecated_BigDecimal!]
+  """Filter for the block changed event."""
+  _change_block: deprecated_BlockChangedFilter
+  and: [deprecated_TokenDayData_filter]
+  or: [deprecated_TokenDayData_filter]
+}
+
+enum deprecated_TokenDayData_orderBy {
+  id
+  date
+  token
+  token__id
+  token__symbol
+  token__symbolSuccess
+  token__name
+  token__nameSuccess
+  token__decimals
+  token__decimalsSuccess
+  token__totalSupply
+  token__volume
+  token__volumeUSD
+  token__untrackedVolumeUSD
+  token__txCount
+  token__liquidity
+  token__derivedETH
+  volume
+  volumeETH
+  volumeUSD
+  txCount
+  liquidity
+  liquidityETH
+  liquidityUSD
+  priceUSD
+}
+
+type deprecated_TokenHourData {
+  id: ID!
+  date: Int!
+  token: deprecated_Token!
+  volume: deprecated_BigDecimal!
+  volumeETH: deprecated_BigDecimal!
+  volumeUSD: deprecated_BigDecimal!
+  txCount: BigInt!
+  liquidity: deprecated_BigDecimal!
+  liquidityETH: deprecated_BigDecimal!
+  liquidityUSD: deprecated_BigDecimal!
+  priceUSD: deprecated_BigDecimal!
+}
+
+input deprecated_TokenHourData_filter {
+  id: ID
+  id_not: ID
+  id_gt: ID
+  id_lt: ID
+  id_gte: ID
+  id_lte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  date: Int
+  date_not: Int
+  date_gt: Int
+  date_lt: Int
+  date_gte: Int
+  date_lte: Int
+  date_in: [Int!]
+  date_not_in: [Int!]
+  token: String
+  token_not: String
+  token_gt: String
+  token_lt: String
+  token_gte: String
+  token_lte: String
+  token_in: [String!]
+  token_not_in: [String!]
+  token_contains: String
+  token_contains_nocase: String
+  token_not_contains: String
+  token_not_contains_nocase: String
+  token_starts_with: String
+  token_starts_with_nocase: String
+  token_not_starts_with: String
+  token_not_starts_with_nocase: String
+  token_ends_with: String
+  token_ends_with_nocase: String
+  token_not_ends_with: String
+  token_not_ends_with_nocase: String
+  token_: deprecated_Token_filter
+  volume: deprecated_BigDecimal
+  volume_not: deprecated_BigDecimal
+  volume_gt: deprecated_BigDecimal
+  volume_lt: deprecated_BigDecimal
+  volume_gte: deprecated_BigDecimal
+  volume_lte: deprecated_BigDecimal
+  volume_in: [deprecated_BigDecimal!]
+  volume_not_in: [deprecated_BigDecimal!]
+  volumeETH: deprecated_BigDecimal
+  volumeETH_not: deprecated_BigDecimal
+  volumeETH_gt: deprecated_BigDecimal
+  volumeETH_lt: deprecated_BigDecimal
+  volumeETH_gte: deprecated_BigDecimal
+  volumeETH_lte: deprecated_BigDecimal
+  volumeETH_in: [deprecated_BigDecimal!]
+  volumeETH_not_in: [deprecated_BigDecimal!]
+  volumeUSD: deprecated_BigDecimal
+  volumeUSD_not: deprecated_BigDecimal
+  volumeUSD_gt: deprecated_BigDecimal
+  volumeUSD_lt: deprecated_BigDecimal
+  volumeUSD_gte: deprecated_BigDecimal
+  volumeUSD_lte: deprecated_BigDecimal
+  volumeUSD_in: [deprecated_BigDecimal!]
+  volumeUSD_not_in: [deprecated_BigDecimal!]
+  txCount: BigInt
+  txCount_not: BigInt
+  txCount_gt: BigInt
+  txCount_lt: BigInt
+  txCount_gte: BigInt
+  txCount_lte: BigInt
+  txCount_in: [BigInt!]
+  txCount_not_in: [BigInt!]
+  liquidity: deprecated_BigDecimal
+  liquidity_not: deprecated_BigDecimal
+  liquidity_gt: deprecated_BigDecimal
+  liquidity_lt: deprecated_BigDecimal
+  liquidity_gte: deprecated_BigDecimal
+  liquidity_lte: deprecated_BigDecimal
+  liquidity_in: [deprecated_BigDecimal!]
+  liquidity_not_in: [deprecated_BigDecimal!]
+  liquidityETH: deprecated_BigDecimal
+  liquidityETH_not: deprecated_BigDecimal
+  liquidityETH_gt: deprecated_BigDecimal
+  liquidityETH_lt: deprecated_BigDecimal
+  liquidityETH_gte: deprecated_BigDecimal
+  liquidityETH_lte: deprecated_BigDecimal
+  liquidityETH_in: [deprecated_BigDecimal!]
+  liquidityETH_not_in: [deprecated_BigDecimal!]
+  liquidityUSD: deprecated_BigDecimal
+  liquidityUSD_not: deprecated_BigDecimal
+  liquidityUSD_gt: deprecated_BigDecimal
+  liquidityUSD_lt: deprecated_BigDecimal
+  liquidityUSD_gte: deprecated_BigDecimal
+  liquidityUSD_lte: deprecated_BigDecimal
+  liquidityUSD_in: [deprecated_BigDecimal!]
+  liquidityUSD_not_in: [deprecated_BigDecimal!]
+  priceUSD: deprecated_BigDecimal
+  priceUSD_not: deprecated_BigDecimal
+  priceUSD_gt: deprecated_BigDecimal
+  priceUSD_lt: deprecated_BigDecimal
+  priceUSD_gte: deprecated_BigDecimal
+  priceUSD_lte: deprecated_BigDecimal
+  priceUSD_in: [deprecated_BigDecimal!]
+  priceUSD_not_in: [deprecated_BigDecimal!]
+  """Filter for the block changed event."""
+  _change_block: deprecated_BlockChangedFilter
+  and: [deprecated_TokenHourData_filter]
+  or: [deprecated_TokenHourData_filter]
+}
+
+enum deprecated_TokenHourData_orderBy {
+  id
+  date
+  token
+  token__id
+  token__symbol
+  token__symbolSuccess
+  token__name
+  token__nameSuccess
+  token__decimals
+  token__decimalsSuccess
+  token__totalSupply
+  token__volume
+  token__volumeUSD
+  token__untrackedVolumeUSD
+  token__txCount
+  token__liquidity
+  token__derivedETH
+  volume
+  volumeETH
+  volumeUSD
+  txCount
+  liquidity
+  liquidityETH
+  liquidityUSD
+  priceUSD
+}
+
+input deprecated_Token_filter {
+  id: ID
+  id_not: ID
+  id_gt: ID
+  id_lt: ID
+  id_gte: ID
+  id_lte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  factory: String
+  factory_not: String
+  factory_gt: String
+  factory_lt: String
+  factory_gte: String
+  factory_lte: String
+  factory_in: [String!]
+  factory_not_in: [String!]
+  factory_contains: String
+  factory_contains_nocase: String
+  factory_not_contains: String
+  factory_not_contains_nocase: String
+  factory_starts_with: String
+  factory_starts_with_nocase: String
+  factory_not_starts_with: String
+  factory_not_starts_with_nocase: String
+  factory_ends_with: String
+  factory_ends_with_nocase: String
+  factory_not_ends_with: String
+  factory_not_ends_with_nocase: String
+  factory_: deprecated_Factory_filter
+  symbol: String
+  symbol_not: String
+  symbol_gt: String
+  symbol_lt: String
+  symbol_gte: String
+  symbol_lte: String
+  symbol_in: [String!]
+  symbol_not_in: [String!]
+  symbol_contains: String
+  symbol_contains_nocase: String
+  symbol_not_contains: String
+  symbol_not_contains_nocase: String
+  symbol_starts_with: String
+  symbol_starts_with_nocase: String
+  symbol_not_starts_with: String
+  symbol_not_starts_with_nocase: String
+  symbol_ends_with: String
+  symbol_ends_with_nocase: String
+  symbol_not_ends_with: String
+  symbol_not_ends_with_nocase: String
+  symbolSuccess: Boolean
+  symbolSuccess_not: Boolean
+  symbolSuccess_in: [Boolean!]
+  symbolSuccess_not_in: [Boolean!]
+  name: String
+  name_not: String
+  name_gt: String
+  name_lt: String
+  name_gte: String
+  name_lte: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_contains: String
+  name_contains_nocase: String
+  name_not_contains: String
+  name_not_contains_nocase: String
+  name_starts_with: String
+  name_starts_with_nocase: String
+  name_not_starts_with: String
+  name_not_starts_with_nocase: String
+  name_ends_with: String
+  name_ends_with_nocase: String
+  name_not_ends_with: String
+  name_not_ends_with_nocase: String
+  nameSuccess: Boolean
+  nameSuccess_not: Boolean
+  nameSuccess_in: [Boolean!]
+  nameSuccess_not_in: [Boolean!]
+  decimals: BigInt
+  decimals_not: BigInt
+  decimals_gt: BigInt
+  decimals_lt: BigInt
+  decimals_gte: BigInt
+  decimals_lte: BigInt
+  decimals_in: [BigInt!]
+  decimals_not_in: [BigInt!]
+  decimalsSuccess: Boolean
+  decimalsSuccess_not: Boolean
+  decimalsSuccess_in: [Boolean!]
+  decimalsSuccess_not_in: [Boolean!]
+  totalSupply: BigInt
+  totalSupply_not: BigInt
+  totalSupply_gt: BigInt
+  totalSupply_lt: BigInt
+  totalSupply_gte: BigInt
+  totalSupply_lte: BigInt
+  totalSupply_in: [BigInt!]
+  totalSupply_not_in: [BigInt!]
+  volume: deprecated_BigDecimal
+  volume_not: deprecated_BigDecimal
+  volume_gt: deprecated_BigDecimal
+  volume_lt: deprecated_BigDecimal
+  volume_gte: deprecated_BigDecimal
+  volume_lte: deprecated_BigDecimal
+  volume_in: [deprecated_BigDecimal!]
+  volume_not_in: [deprecated_BigDecimal!]
+  volumeUSD: deprecated_BigDecimal
+  volumeUSD_not: deprecated_BigDecimal
+  volumeUSD_gt: deprecated_BigDecimal
+  volumeUSD_lt: deprecated_BigDecimal
+  volumeUSD_gte: deprecated_BigDecimal
+  volumeUSD_lte: deprecated_BigDecimal
+  volumeUSD_in: [deprecated_BigDecimal!]
+  volumeUSD_not_in: [deprecated_BigDecimal!]
+  untrackedVolumeUSD: deprecated_BigDecimal
+  untrackedVolumeUSD_not: deprecated_BigDecimal
+  untrackedVolumeUSD_gt: deprecated_BigDecimal
+  untrackedVolumeUSD_lt: deprecated_BigDecimal
+  untrackedVolumeUSD_gte: deprecated_BigDecimal
+  untrackedVolumeUSD_lte: deprecated_BigDecimal
+  untrackedVolumeUSD_in: [deprecated_BigDecimal!]
+  untrackedVolumeUSD_not_in: [deprecated_BigDecimal!]
+  txCount: BigInt
+  txCount_not: BigInt
+  txCount_gt: BigInt
+  txCount_lt: BigInt
+  txCount_gte: BigInt
+  txCount_lte: BigInt
+  txCount_in: [BigInt!]
+  txCount_not_in: [BigInt!]
+  liquidity: deprecated_BigDecimal
+  liquidity_not: deprecated_BigDecimal
+  liquidity_gt: deprecated_BigDecimal
+  liquidity_lt: deprecated_BigDecimal
+  liquidity_gte: deprecated_BigDecimal
+  liquidity_lte: deprecated_BigDecimal
+  liquidity_in: [deprecated_BigDecimal!]
+  liquidity_not_in: [deprecated_BigDecimal!]
+  derivedETH: deprecated_BigDecimal
+  derivedETH_not: deprecated_BigDecimal
+  derivedETH_gt: deprecated_BigDecimal
+  derivedETH_lt: deprecated_BigDecimal
+  derivedETH_gte: deprecated_BigDecimal
+  derivedETH_lte: deprecated_BigDecimal
+  derivedETH_in: [deprecated_BigDecimal!]
+  derivedETH_not_in: [deprecated_BigDecimal!]
+  whitelistPairs: [String!]
+  whitelistPairs_not: [String!]
+  whitelistPairs_contains: [String!]
+  whitelistPairs_contains_nocase: [String!]
+  whitelistPairs_not_contains: [String!]
+  whitelistPairs_not_contains_nocase: [String!]
+  whitelistPairs_: deprecated_Pair_filter
+  hourData_: deprecated_TokenHourData_filter
+  dayData_: deprecated_TokenDayData_filter
+  basePairs_: deprecated_Pair_filter
+  quotePairs_: deprecated_Pair_filter
+  basePairsDayData_: deprecated_PairDayData_filter
+  quotePairsDayData_: deprecated_PairDayData_filter
+  """Filter for the block changed event."""
+  _change_block: deprecated_BlockChangedFilter
+  and: [deprecated_Token_filter]
+  or: [deprecated_Token_filter]
+}
+
+enum deprecated_Token_orderBy {
+  id
+  factory
+  factory__id
+  factory__pairCount
+  factory__volumeUSD
+  factory__volumeETH
+  factory__untrackedVolumeUSD
+  factory__liquidityUSD
+  factory__liquidityETH
+  factory__txCount
+  factory__tokenCount
+  factory__userCount
+  symbol
+  symbolSuccess
+  name
+  nameSuccess
+  decimals
+  decimalsSuccess
+  totalSupply
+  volume
+  volumeUSD
+  untrackedVolumeUSD
+  txCount
+  liquidity
+  derivedETH
+  whitelistPairs
+  hourData
+  dayData
+  basePairs
+  quotePairs
+  basePairsDayData
+  quotePairsDayData
+}
+
+type deprecated_Transaction {
+  id: ID!
+  blockNumber: BigInt!
+  timestamp: BigInt!
+  mints(skip: Int = 0, first: Int = 100, orderBy: deprecated_Mint_orderBy, orderDirection: deprecated_OrderDirection, where: deprecated_Mint_filter): [deprecated_Mint!]!
+  burns(skip: Int = 0, first: Int = 100, orderBy: deprecated_Burn_orderBy, orderDirection: deprecated_OrderDirection, where: deprecated_Burn_filter): [deprecated_Burn!]!
+  swaps(skip: Int = 0, first: Int = 100, orderBy: deprecated_Swap_orderBy, orderDirection: deprecated_OrderDirection, where: deprecated_Swap_filter): [deprecated_Swap!]!
+}
+
+input deprecated_Transaction_filter {
+  id: ID
+  id_not: ID
+  id_gt: ID
+  id_lt: ID
+  id_gte: ID
+  id_lte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  blockNumber: BigInt
+  blockNumber_not: BigInt
+  blockNumber_gt: BigInt
+  blockNumber_lt: BigInt
+  blockNumber_gte: BigInt
+  blockNumber_lte: BigInt
+  blockNumber_in: [BigInt!]
+  blockNumber_not_in: [BigInt!]
+  timestamp: BigInt
+  timestamp_not: BigInt
+  timestamp_gt: BigInt
+  timestamp_lt: BigInt
+  timestamp_gte: BigInt
+  timestamp_lte: BigInt
+  timestamp_in: [BigInt!]
+  timestamp_not_in: [BigInt!]
+  mints: [String!]
+  mints_not: [String!]
+  mints_contains: [String!]
+  mints_contains_nocase: [String!]
+  mints_not_contains: [String!]
+  mints_not_contains_nocase: [String!]
+  mints_: deprecated_Mint_filter
+  burns: [String!]
+  burns_not: [String!]
+  burns_contains: [String!]
+  burns_contains_nocase: [String!]
+  burns_not_contains: [String!]
+  burns_not_contains_nocase: [String!]
+  burns_: deprecated_Burn_filter
+  swaps: [String!]
+  swaps_not: [String!]
+  swaps_contains: [String!]
+  swaps_contains_nocase: [String!]
+  swaps_not_contains: [String!]
+  swaps_not_contains_nocase: [String!]
+  swaps_: deprecated_Swap_filter
+  """Filter for the block changed event."""
+  _change_block: deprecated_BlockChangedFilter
+  and: [deprecated_Transaction_filter]
+  or: [deprecated_Transaction_filter]
+}
+
+enum deprecated_Transaction_orderBy {
+  id
+  blockNumber
+  timestamp
+  mints
+  burns
+  swaps
+}
+
+type deprecated_User {
+  id: ID!
+  liquidityPositions(skip: Int = 0, first: Int = 100, orderBy: deprecated_LiquidityPosition_orderBy, orderDirection: deprecated_OrderDirection, where: deprecated_LiquidityPosition_filter): [deprecated_LiquidityPosition!]!
+}
+
+input deprecated_User_filter {
+  id: ID
+  id_not: ID
+  id_gt: ID
+  id_lt: ID
+  id_gte: ID
+  id_lte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  liquidityPositions_: deprecated_LiquidityPosition_filter
+  """Filter for the block changed event."""
+  _change_block: deprecated_BlockChangedFilter
+  and: [deprecated_User_filter]
+  or: [deprecated_User_filter]
+}
+
+enum deprecated_User_orderBy {
+  id
+  liquidityPositions
+}
+
+type deprecated__Block_ {
+  """The hash of the block"""
+  hash: deprecated_Bytes
+  """The block number"""
+  number: Int!
+  """Integer representation of the timestamp stored in blocks for the chain"""
+  timestamp: Int
+  """The hash of the parent block"""
+  parentHash: deprecated_Bytes
+}
+
+"""The type for the top-level _meta field"""
+type deprecated__Meta_ {
+  """
+  Information about a specific subgraph block. The hash of the block
+  will be null if the _meta field has a block constraint that asks for
+  a block number. It will be filled if the _meta field has no block constraint
+  and therefore asks for the latest  block
+  
+  """
+  block: deprecated__Block_!
+  """The deployment ID"""
+  deployment: String!
+  """If `true`, the subgraph encountered indexing errors at some past block"""
+  hasIndexingErrors: Boolean!
+}
+
+enum deprecated__SubgraphErrorPolicy_ {
+  """Data will be returned even if the subgraph has indexing errors"""
+  allow
+  """
+  If the subgraph has indexing errors, data will be omitted. The default.
+  """
+  deny
+}

@@ -1,0 +1,1 @@
+{"version":3,"file":"IconList.d.ts","sourceRoot":"","sources":["../../../src/components/currency/IconList.tsx"],"names":[],"mappings":"AACA,OAAO,EAAY,EAAE,EAAE,SAAS,EAAgC,MAAM,OAAO,CAAA;AAE7E,MAAM,WAAW,aAAa;IAC5B,QAAQ,EAAE,SAAS,CAAA;IACnB,SAAS,EAAE,MAAM,CAAA;IACjB,UAAU,EAAE,MAAM,CAAA;CACnB;AAED,eAAO,MAAM,QAAQ,EAAE,EAAE,CAAC,aAAa,CA2BtC,CAAA"}

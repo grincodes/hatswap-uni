@@ -1,0 +1,1 @@
+{"version":3,"file":"time-ago.d.ts","sourceRoot":"","sources":["../../src/components/time-ago.tsx"],"names":[],"mappings":"AAKA,OAAO,KAAmB,MAAM,OAAO,CAAA;AAEvC,MAAM,WAAW,YACf,SAAQ,IAAI,CAAC,KAAK,CAAC,oBAAoB,CAAC,eAAe,CAAC,EAAE,OAAO,CAAC;IAClE,OAAO,CAAC,EAAE,OAAO,CAAA;IACjB,KAAK,EAAE,IAAI,CAAA;CACZ;AAED,QAAA,MAAM,OAAO,wFAoBZ,CAAA;AAID,OAAO,EAAE,OAAO,EAAE,CAAA"}
